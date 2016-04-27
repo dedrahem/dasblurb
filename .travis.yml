@@ -1,8 +1,15 @@
 language: ruby
 rvm:
-  - 2.3.0
+- 2.3.0
 addons:
-  postgresql: "9.4"
+  postgresql: '9.4'
 before_script:
-  - psql -c 'create database travis_ci_test;' -U postgres
-  - cp config/database.yml.travis config/database.yml
+- psql -c 'create database travis_ci_test;' -U postgres
+- cp config/database.yml.travis config/database.yml
+deploy:
+  provider: heroku
+  api_key:
+    secure: h6+AiuhsfCEbgJ8o3vz5m7PucD8ajhj3juheNp2gGrLQFX+ioNzPojjQ6JoRXvGKbfTgOiHT0C+ee6bfMw/c58mXvwo92+3/JIoxOT+21Ce3yAuRGI6YXxIU9tubpfEYqAzSocSM0MJBedPVGmCakOM9zO+qovj9hl72QqePgWYNgsglwyrrTj/PeHgGEAsIu4IIRG8GII3GXmqHBNEiN5xudpDxo4Dy0//pUJtnjrOQfJj+1W6HMuW2gePnLT8J4zhCdwcmk1TzpfJlQ5eHXowqLRqvJhtAzmGQaogNW8w9crw7A2Vl3zUhz5mJ61M5otYtzIP/IggHTQk8+hlNrm9yQAFQDTx2w8UGimFhMf4nQW5G6K+XjXi/JUJlZ0kLdX5NLWx/M81/8CNMYIZJDq24ptN6eV9Ppl2TioSC9+gBPFLDASgKILf+Ji2WxvIhgHSljC1kRE/DIWSYjQcATHXBqvJ5PdWR6zXsNMa89eLWKQnS2ts5GHw1+UKoHJPrQq163hSz3OhWgyb6jC4cSxyVXTwbsgrQ2wzWuB8NnaPTUqbQy+DZz/gT/7gE6nlUPHWTAOn4DkAmBs09e1sNtlDLBD5mfXhPGI8cE7lNXEhns2N7LbYfhpJke5rlntxDndmyxNtkW6ipGs2Le7GmnV3fXUrSEC3G/KHA5AT+peE=
+  app: dasblurb
+  on:
+    repo: dedrahem/dasblurb
