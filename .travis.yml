@@ -13,3 +13,6 @@ deploy:
   app: dasblurb
   on:
     repo: dedrahem/dasblurb
+run:
+    - "rake db:migrate"
+    - "rake cleanup"
