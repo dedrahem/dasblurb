@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  
-  get 'users/new'
+
+
 
   get 'sign_in' => 'sessions#new', as: :sign_in
   post 'sign_in' => 'sessions#create'
