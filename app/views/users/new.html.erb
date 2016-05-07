@@ -1,6 +1,6 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
-<p> jowijflksdj </p>
+<div class="col-md-6 col-md-offset-3">
+
+<h1>Sign-Up as a New User</h1>
 
 <%= simple_form_for @user do |f| %>
   <%= f.input :email %>
@@ -8,3 +8,4 @@
   <%= f.input :password_confirmation, label: "Password Confirmation" %>
   <%= f.submit "Sign Up" %>
 <% end %>
+</div>

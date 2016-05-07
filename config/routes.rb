@@ -1,15 +1,11 @@
 Rails.application.routes.draw do
   get 'users/new'
-
   get 'sign_in' => 'sessions#new', as: :sign_in
   post 'sign_in' => 'sessions#create'
+  delete 'sign_in' => 'sessions#delete', as: :sign_out
   get "/users/new" => 'users#new', as: :sign_up
   post "/users" => 'users#create', as: :users
-
   root 'homepage#dashboard'
-
-  delete 'sign_in' => 'sessions#delete', as: :sign_out
-
   get "posts/new" => 'posts#new', as: :new_post
   get "posts" => 'posts#index', as: :posts
   get "users" => 'users#index', as: :get_users

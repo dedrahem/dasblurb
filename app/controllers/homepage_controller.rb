@@ -26,4 +26,5 @@ class HomepageController < ApplicationController
 
   def destroy
   end
+  
 end
