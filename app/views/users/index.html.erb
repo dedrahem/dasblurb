@@ -1,2 +1,19 @@
-<h1>Users#index</h1>
+<h1>Users List</h1>
+
 <p>Find me in app/views/users/index.html.erb</p>
+
+
+<form class="" action="#" method="get">
+  <div class="form-group">
+    <label for="search_text">Search Text</label>
+    <input type="string" user_name="search_string" value="" class="form-control">
+  </div>
+</form>
+
+
+
+<% @users.each do |user| %>
+  <li>
+    <%= link_to highlight(user.user_name, params[:search_text]), "/users/#{user.id}"%>
+  </li>
+<% end %>
