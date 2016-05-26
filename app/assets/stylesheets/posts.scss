@@ -1,0 +1,103 @@
+
+
+.postindex {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  height: auto;
+}
+
+.buffer {
+  width: 100%;
+  height: 20px;
+  align-self: center;
+}
+
+.postwrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
+  height: auto;
+}
+
+.leftbox {
+  width: 2%;
+  height: auto;
+}
+
+.rightbox {
+  width: 2%;
+  height: auto;
+}
+
+.timewrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 48%;
+  height: auto;
+  padding: 1em;
+ }
+
+.liketext {
+  font-size: 18px;
+  color: red;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+h1 {font-size: 15px;}
+
+h2 {font-size: 15px;}
+
+.namestalk {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+  align-items: flex-start;
+  justify-content: space-around;
+  padding-top: 6px;
+  padding-bottom: 10px;
+}
+
+.name {
+  justify-content: center;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    border-style: double;
+    border-width: 2px;
+    border-color: gray;
+    text-decoration: none;
+    background-color: #ddedec;
+    padding: 6px;
+}
+
+.bodyofpost {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  width: 100%;
+  height: auto;
+}
+
+.textbody {
+  justify-content: left;
+  width: 98%;
+  height: auto;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  color: black;
+}
+
+.emptydiv {
+  width: 100%;
+  height: 30px;
+  color: black;
+}
