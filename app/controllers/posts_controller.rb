@@ -14,26 +14,12 @@ class PostsController < ApplicationController
       # @posts = Post.all
       @posts = Post.all
       @users = User.all
+      @follows = Follow.all
 
     end
 
     def show
       @post = Post.find_by id: params[:id]
-
-    end
-
-    def upvote
-      @post = Post.find_by id: params[:id]
-      @post.likes = 0 if @post.likes.blank?
-      @post.update likes: (@post.likes + 1)
-      redirect_to posts_path
-    end
-
-    def downvote
-      @post = Post.find_by id: params[:id]
-      @post.likes = 0 if @post.likes.blank?
-      @post.update likes: (@post.likes - 1)
-      redirect_to posts_path
     end
 
     def edit
@@ -45,14 +31,12 @@ class PostsController < ApplicationController
       @post = Post.new
       @post.user = @current_user
       #set the values
-      @post.title = params[:post][:title]
 
       @post.postbody = params[:post][:postbody]
 
-
       if @post.save
         # sign in w/ sessions
-          # session[:user_id] = @user_id # remember who user is
+          session[:user_id] = @user_id # remember who user is
           # redirect
         redirect_to posts_path
       else

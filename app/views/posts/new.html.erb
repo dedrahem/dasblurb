@@ -1,2 +1,11 @@
 <h1>Posts#new</h1>
 <p>Find me in app/views/posts/new.html.erb</p>
+<div class="newpostbanner">
+  <%= "New Posts Entry Form" %>
+
+  <div class="addauthorwrap">
+    <%= link_to "New User - if New User redirect here.", sign_up_path %>
+  </div>
+
+  <%= render partial: 'form' %>
+</div>
