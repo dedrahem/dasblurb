@@ -3,6 +3,12 @@ require 'faker'
 
 class UsersController < ApplicationController
 
+    def index
+      @users = User.all
+      @posts = Post.all
+      @follows = Follow.all
+    end
+
     def list
       @users = fetch_users
 
@@ -39,13 +45,6 @@ class UsersController < ApplicationController
 
     end
 
-
-  def index
-    @users = User.all
-    @posts = Post.all
-    @follows = Follow.all
-  end
-
   def show
     @user = User.find_by id: params[:id]
   end
@@ -54,11 +53,16 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def user_params
+      params.require(:user).permit(:user_name, :email, :password)
+    end
+  # create new users with STRONG PARAMETERS
+
   def edit
   end
 
   def create
-    @user = User.new params.require(:user).permit(:email, :password, :password_confirmation)
+    @user = User.new params.require(:user).permit(:user_name, :email, :password, :password_confirmation)
     if @user.save
       # sign in
       session[:user_id] = @user.id

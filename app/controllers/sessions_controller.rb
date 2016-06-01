@@ -10,6 +10,10 @@ class SessionsController < ApplicationController
     password = params[:password]
 
     user = User.find_by email: email
+    puts "Info: #{email} | #{password}"
+    puts "Has User: #{user.present?}"
+    puts "Correct Password: #{user.authenticate(password)}"
+
     if user && user.authenticate(password)
       session[:user_id] = user.id
       redirect_to root_path

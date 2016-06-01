@@ -10,7 +10,7 @@ if User.count == 0
 	until usercounter == 24
 		user = User.create(user_name: Faker::Name.name,
                 	email: Faker::Internet.email,
-                	password: Faker::Internet.password(8, 10),
+                	password: '1234',
                 	created_at: Faker::Time.between(DateTime.now - 7, DateTime.now - 5),
 			            updated_at: Faker::Time.between(DateTime.now - 4, DateTime.now))
 		Post.create(postbody: Faker::Hipster.sentence,
