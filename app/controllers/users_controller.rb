@@ -2,6 +2,9 @@ require 'csv'
 require 'faker'
 
 class UsersController < ApplicationController
+  #undefined method for loggin in user  ??? 
+  #before_action :logged_in_user, only: [:index, :edit, :update]
+  before_action :correct_user, only: [:edit, :update]
 
     def index
       @users = User.all

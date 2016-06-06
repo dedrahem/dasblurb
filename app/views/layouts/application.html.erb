@@ -7,16 +7,26 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-  <div class="container">
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <!-- header element w/three CSS classes -->
+    <div class="container">
+    <nav>
+      <ul class="nav navbar-nav navbar-right"> <!-- these are BOOTSTRAP style elements -->
+        <li> <%= link_to "USER_TIMELINE", timeline_path %> </li>
+        <li> <%= link_to "LIST of USERS", get_users_path %> </li>
+        <li> <%= link_to "SIGN_IN", sign_in_path %> </li>
+        <li> <%= link_to "DASHBOARD", root_path %> </li>      
+      </ul>
+    </nav>
+  </div>
+</header>
     <% if @current_user %>
       <div>
         <%= link_to 'Sign-Out', sign_out_path, method: :delete %>
       </div>
       <% end %>
-  <%= yield %>
-  </div>
-
+    <div class="container"> <!-- container is a BOOTSTRAP reserved DIV -->
+      <%= yield %>
+    </div>
 </body>
-
 </html>

@@ -2,11 +2,11 @@
 # http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  user_name: MyString
-  email: MyString
-  password_digest: MyString
+  user_name: Baby Hershey
+  email: baby@baby.com
+  password_digest: mypword
 
 two:
-  user_name: MyString
-  email: MyString
-  password_digest: MyString
+  user_name: Shemar Hansen
+  email: felix@herzognicolas.org
+  password_digest: 1234

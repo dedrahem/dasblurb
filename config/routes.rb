@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "/users/new" => 'users#new', as: :sign_up
   post "/users" => 'users#create', as: :users
   root 'homepage#dashboard'
+  get "homepage" => 'homepage#index', as: :timeline
   get "posts" => 'posts#index', as: :posts
   get "posts/new" => 'posts#new', as: :new_post
   get "users" => 'users#index', as: :get_users

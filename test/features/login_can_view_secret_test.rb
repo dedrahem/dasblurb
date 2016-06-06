@@ -13,10 +13,10 @@ class LoginCanViewSecretTest < Capybara::Rails::TestCase
     fill_in "Password", with: "mypword"
     click_button "Sign In"
 
-    assert_content page, "#thesecret"
+    assert_content page, "so many secrets"
 
     click_link "Sign Out"
-    refute_content page, "#thesecret"
+    refute_content page, "so many secrets"
 
   end
 
@@ -24,7 +24,7 @@ class LoginCanViewSecretTest < Capybara::Rails::TestCase
     me=User.create email: "doug@me.com", password: "mypword"
 
     visit root_path
-    refute_content page, "#thesecret"
+    refute_content page, "so many secrets"
 
   end
 
@@ -37,6 +37,6 @@ class LoginCanViewSecretTest < Capybara::Rails::TestCase
     fill_in "Password", with: "mypword"
     click_button "Sign In"
 
-    assert_content page, "#thesecret"
+    assert_content page, "so many secrets"
   end
 end
