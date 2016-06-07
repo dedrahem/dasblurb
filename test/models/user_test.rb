@@ -1,11 +1,14 @@
 require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
-  def user
-    @user ||= User.new
+
+  def setup
+    @user = User.find(1)
   end
 
-  def test_valid
-    assert user.valid?
+  test "MODEL TEST - is user 1 valid" do
+    assert @user.valid?
   end
+
 end
+USE FIXTURES how do that wortk
