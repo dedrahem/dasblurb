@@ -1,15 +1,20 @@
 require "test_helper"
 #  / because there is a production Vs a test database  /
-#  /  fixtures or hardcode    /
+#  /  fixtures or hardcode set up is hardcode......   /
 #  /  def setup              /
-#  /  @user = User.find(1)  /
+#  /  @user = User.find(1) nope won't work......... /
 class UserTest < ActiveSupport::TestCase
 
   def setup
-    @user = User.new(user_name: "Mike Vapor", email: "mike@bigcity.com", password: "1234")
+    @user = User.new(user_name: "Mike Vapor", email: "mike@bigcity.com", password: "123456",
+    password_confirmation: "123456")
     @user.save!
   end
-
+# /  Jesse had me include the @user.save! when i was failing due to     /
+# /   conflict with tests and the fact i didn't include a password field  /
+# / after adding password the tests passed, also, this is called out as  /
+# / password:  and not password_digest:  the @user.save! provides a way  /
+# / to see an update of any issues during save......                     /
   test "user model should be valid" do
     assert @user.valid?
   end
@@ -66,5 +71,14 @@ class UserTest < ActiveSupport::TestCase
     @user.save
     assert_not duplicate_user.valid?
   end
+
+test "..pword to be a min length of 6 chars..." do
+  @user.password = @user.password_confirmation = "x" * 5
+  assert_not @user.valid?
+end
+
+
+
+
 
 end
