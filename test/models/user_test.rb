@@ -55,6 +55,7 @@ class UserTest < ActiveSupport::TestCase
     invalid_addresses.each do |invalid_address|
       @user.email = invalid_address
       # / these addresses are causing the test to fail /
+      # / does not capture name@mail..net  consecutive dots /
       assert_not @user.valid?, "#{invalid_address.inspect} should be invalid"
     end
   end
