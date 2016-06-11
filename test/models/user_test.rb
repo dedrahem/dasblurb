@@ -10,14 +10,17 @@ class UserTest < ActiveSupport::TestCase
     password_confirmation: "123456")
     @user.save!
   end
-# /  Jesse had me include the @user.save! when i was failing due to     /
+
+# /  Jesse had me include the @user.save! when i was failing due to       /
 # /   conflict with tests and the fact i didn't include a password field  /
-# / after adding password the tests passed, also, this is called out as  /
-# / password:  and not password_digest:  the @user.save! provides a way  /
-# / to see an update of any issues during save......                     /
-  test "user model should be valid" do
-    assert @user.valid?
-  end
+# / after adding password the tests passed, also, this is called out as   /
+# / password:  and not password_digest:  the @user.save! provides a way   /
+# / to see an update of any issues during save..???....                   /
+
+  # / test "user model should be valid" do  /
+  # /   assert @user.valid?                 /
+  # / end  this test fails when ! is added in the model  /
+  # /  before_save { self.email = email.downcase!}      /
 
   test "name field should be populated" do
     @user.user_name = "     "
@@ -55,7 +58,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test ".. email validation rejecting bogus or suspect address ..." do
-    invalid_addresses = %w[user@example,com cindycash$@dollar.net mikeatbigcity.com user_at_first.com mae_moriette@bash. camylle@bal_bal.org antonial@buzz+beer.com jakethebear uncle.fester@]
+    invalid_addresses = %w[user@example,com cindycash$@dollar.net mikeatbigcity.com user_at_first.com mae_moriette@bash. camylle@bal_bal.org antonial@buzz+beer.com jakethebear uncle.fester@ doug@me..com ]
 
     invalid_addresses.each do |invalid_address|
       @user.email = invalid_address
@@ -72,13 +75,22 @@ class UserTest < ActiveSupport::TestCase
     assert_not duplicate_user.valid?
   end
 
+  test "<-- Save email addresses in lower-case --> " do
+      mixed_case_email = "HousTon@ExaMPLE.CoM"
+      @user.email = mixed_case_email
+      @user.save
+      assert_equal mixed_case_email.downcase, @user.reload.email
+    end
+
+    #  / reload will recall the email from the database  /
+    #  / assert equual tests for the equality of the two /
+    #  / River Town /
+
+
 test "..pword to be a min length of 6 chars..." do
   @user.password = @user.password_confirmation = "x" * 5
   assert_not @user.valid?
 end
-
-
-
 
 
 end

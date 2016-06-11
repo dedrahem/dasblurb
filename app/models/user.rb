@@ -1,16 +1,17 @@
 class User < ActiveRecord::Base
-  before_save { self.email = email.downcase }
+  before_save { self.email = email.downcase!}
   has_secure_password
   has_many :posts
   validates :password, length: { minimum: 6 }
   validates :user_name, presence: true, length: {maximum: 48}
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: {maximum: 255},
     format: { with: VALID_EMAIL_REGEX },
     uniqueness: { case_sensitive: false }
 end
 
-
+# / the first line converts the email to lower case prior to save /
+# / test.rb for the actual test that this worked             /
 # / uniquess at the model level is implemented, but          /
 # / the database will still allow for copies of the same     /
 # / email address, the database will need to be protected    /
