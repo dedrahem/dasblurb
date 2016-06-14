@@ -2,7 +2,7 @@ require 'csv'
 require 'faker'
 
 class UsersController < ApplicationController
-  #undefined method for loggin in user  ??? 
+  #undefined method for loggin in user  ???
   #before_action :logged_in_user, only: [:index, :edit, :update]
   before_action :correct_user, only: [:edit, :update]
 
@@ -48,9 +48,21 @@ class UsersController < ApplicationController
 
     end
 
+    # -----                                               ----- #
+    # -----                                               ----- #
+
   def show
     @user = User.find_by id: params[:id]
   end
+
+# what does the above do ?  use the find method on the User #
+# model, User class, to retrieve the user from the database #
+# and assign it to an instance variable of the user's table #
+# the @user facilitating hand-off to the html view          #
+# with an index at 1, params[:id] will be user id 1         #
+# this is equiv to using User.find(1) at the console        #
+# params[:id] IS THE STRING, "1" and find will convert      #
+# the string to an integer, ..........                      #
 
   def new
     @user = User.new

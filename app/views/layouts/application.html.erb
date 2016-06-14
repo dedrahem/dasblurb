@@ -1,32 +1,29 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Dasblurb</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <!-- header element w/three CSS classes -->
-    <div class="container">
-    <nav>
-      <ul class="nav navbar-nav navbar-right"> <!-- these are BOOTSTRAP style elements -->
-        <li> <%= link_to "USER_TIMELINE", timeline_path %> </li>
-        <li> <%= link_to "LIST of USERS", get_users_path %> </li>
-        <li> <%= link_to "SIGN_IN", sign_in_path %> </li>
-        <li> <%= link_to "DASHBOARD", root_path %> </li>      
-      </ul>
-    </nav>
-  </div>
-</header>
-    <% if @current_user %>
-      <div>
-        <%= link_to 'Sign-Out', sign_out_path, method: :delete %>
+  <head>
+    <!-- <title><full_title(yield(:title))></title> -->
+    <title><%=yield(:title)%> | dasBLURB die meisten 175</title>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <%= render 'layouts/shim' %>
+    <!-- the line above will LOOK for a file named  -->
+    <!-- app/views/layouts/_shim.html.erb  aka, A _PARTIAL -->
+  </head>
+  <body>
+
+    <%= render 'layouts/header' %>
+      <!-- header element w/three CSS classes -->
+
+      <!-- <% if @current_user %> -->
+      <!--  <div> -->
+      <!--    <%= link_to 'Sign-Out', sign_out_path, method: :delete %>  -->
+      <!--  </div>  -->
+      <!--  <% end %>  -->
+      <div class="container"> <!-- container is a BOOTSTRAP reserved DIV -->
+        <%= yield %>
+        <%= render 'layouts/footer' %>
+        <%= debug(params) if Rails.env.development? %>
       </div>
-      <% end %>
-    <div class="container"> <!-- container is a BOOTSTRAP reserved DIV -->
-      <%= yield %>
-    </div>
-</body>
+  </body>
 </html>

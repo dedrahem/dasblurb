@@ -1,10 +1,30 @@
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+
 /* variables and defn */
+
 $gray-medium-light: #eaeaea;
+/* below is a SASS mix-in box_sizing which allows */
+/* a group of CSS rules to be used for multiple elements */
+/* works with the debug_dump ...somehow.....hmmm 280 */
+@mixin box_sizing {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 40px;
+  @include box_sizing;
+}
 
 /* generic universal */
 
 body {
-  padding-top: 8px;
+  padding-top: 40px;
   border: 4px;
   border-color: black;
   border-style: solid;
@@ -32,15 +52,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 3em;
-  letter-spacing: -2px;
+  font-size: 4em;
+  letter-spacing: 1px;
   margin-bottom: 30px;
   text-align: center;
 }
 
 h2 {
   font-size: 1.2em;
-  letter-spacing: -1px;
+  letter-spacing: 1px;
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
@@ -64,7 +84,9 @@ p {
 }
 
 /* sign in and sign up he calls this HEADER */
-/* and I do not do a footer */
+/* i put in a header much later due problems */
+/* with the layout partial, tinybox was strictly */
+/* for experimenting with an image and background */
 
 
 .tinybox {
@@ -88,3 +110,70 @@ p {
   color: #fff;
   text-decoration: none;
 }
+
+/*  FOOTER FOOTER FOOTER  */
+
+footer {
+  margin-top: 40px;
+  padding-top: 5px;
+  border-top: 2px solid #eaeaea;
+  color: $gray-medium-light;
+  a {
+    color: $gray;
+    &:hover {
+      color: #222;
+    }
+  }
+    small {
+    float: left;
+  }
+  ul {
+     float: right;
+     list-style: none;
+  li {
+     float: left;
+     margin-left: 15px;
+    }
+  }
+}
+
+
+/* FOOTER  END  FOOTER  */
+                            /* SIDEBAR For USER  */
+aside {
+  section.user_info {
+    margin-top: 20px;
+  }
+  section {
+    padding: 10px 0;
+      margin-top: 20px;
+      &:first-child {
+        border: 3px;
+        border-color: green;
+        padding-top: 0;
+      }
+    span {
+      display: block;
+      margin-bottom: 3px;
+      line-height: 1;
+    }
+    h1 {
+      font-size: 12px;
+      text-align:left;
+      letter-spacing: 1px;
+      margin-bottom: 3px;
+      margin-top: 2px;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+/*  ^^^^^^^^^^    END     BOTTOM OF FILE  ^^^^^^^^^   */

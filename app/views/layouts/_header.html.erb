@@ -1,0 +1,14 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+<!-- the above gives the header tag three CSS callouts, separated -->
+<!-- by spaces, this will be replaced at a later point, but is this better? -->
+  <div class="container">
+    <nav>
+      <ul class="nav navbar-nav navbar-right"> <!-- these are 3 BOOTSTRAP style elements -->
+        <li> <%= link_to "My_Timeline", timeline_path %> </li>
+        <li> <%= link_to "LIST of USERS", get_users_path %> </li>
+        <li> <%= link_to "SIGN_IN", sign_in_path %> </li>
+        <li> <%= link_to "DASHBOARD", root_path %> </li>
+      </ul>
+    </nav>
+  </div>
+</header>
