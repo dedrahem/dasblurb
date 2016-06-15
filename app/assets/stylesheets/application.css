@@ -1,10 +1,12 @@
 /*
+ * the file of manifest destiny...
  * This is a manifest file that will be compiled into
  * application.css, which will include all files listed below.
  * The lines below are used by SPROCKETS to inlcude the proper files.
  * first line, all CSS files in app/assets/stylesheets , including treesubs,
  * are included in the application CSS
- *
+ * ultimately you want to go to SASS, syn awesonme style sheet
+ * require normalize - do you really want this, or SASS ??
  *= require_tree .
  *= require_self
  */

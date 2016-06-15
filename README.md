@@ -39,12 +39,16 @@
 # add_index(:users, :email, {:unique=>true})
 # AddIndexToUsersEmail: migrated
 
-# one:
-# user_name: Baby Hershey
-# email: baby@baby.com
-# password: mypword
-
-# two:
-# user_name: Shemar Hansen
-# email: felix@herzognicolas.org
-# password: 1234
+# failing UsersControllerTest#test
+# should_get_users_show_profile_page
+# test "| should get users show profile page |" do
+#   get :show
+#   assert_response :success
+#   assert_select "title", "Show User Profile | #{@base_title}"
+# end
+# the fix get :show, id: @ user.id
+# to access an id'd show page
+# took out bogus line in user  title, {@user.user_name})
+# update setup in user test to add,
+# @ user = users(:one) and update the user_yml for user id
+# user show html line 7 was incorrect and not needed.

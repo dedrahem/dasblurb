@@ -6,8 +6,10 @@ class UsersControllerTest < ActionController::TestCase
 #    @other_user = users(:two)
 #  end
 
+
 def setup
   @base_title = "dasBLURB die meisten 175"
+  @user = users(:one)
 end
 
 
@@ -25,11 +27,14 @@ end
 
 
 test "| should get users show profile page |" do
-  get :show
+  get :show, id: @user.id
   assert_response :success
   assert_select "title", "Show User Profile | #{@base_title}"
 end
+# get :show becomes
+# get :show, id: @user.id
 # get "users/:id" => 'users#show', as: :user
+
 
 #  test "should redirect index when not logged in" do
 #    get :index
