@@ -52,3 +52,26 @@
 # update setup in user test to add,
 # @ user = users(:one) and update the user_yml for user id
 # user show html line 7 was incorrect and not needed.
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# %%%%%%  Undefined method authenticate for nil class %%%%
+#
+# using a SEEDED user - or - a Sign_Up created user
+# puts "Info: #{email} | #{password}"
+# puts "Has User: #{user.present?}"
+# puts "Correct Password: #{user.authenticate(password)}"
+#
+# if user && user.authenticate(password)
+#   session[:user_id] = user.id
+#
+# BUT I AM ABLE TO ENTER USING A CREATED w/Sign_Up user
+#
+# NO METHOD ERROR IN SESSIONS CONTROLLER # create
+#  at the rails console > User.find(27)
+#  User Load (0.5ms)  SELECT  "users".* FROM "users"
+#  WHERE "users"."id" = $1 LIMIT 1  [["id", 27]]
+#  => #<User id: 27, user_name: "Rufus Dufus", email: nil,
+#  password_digest: "$2a$10$MNy7BGjk0M1eovSt6ZsgyehqeeYpZVqzfXONU3NgcN4...",
+#  created_at: "2016-06-13 14:47:48", updated_at: "2016-06-13 14:47:48"> #
+#  irb(main):002:0>
+
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
