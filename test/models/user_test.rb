@@ -80,8 +80,8 @@ class UserTest < ActiveSupport::TestCase
     puts " The original user's info is  >>> #{@user.inspect}"
     assert_not duplicate_user.valid?
     puts " - - - - - - - - - - - - - Line 82  - - - - - - - - - "
-    puts " Is the duplicate user valid?  #{duplicate_user.valid?}"
-    puts " - - - - - - - - - - - - - Line 84 - - - - - - - - - "
+    puts " Is the duplicate user valid, is it UNIQUE?( F for Not Unique )=  #{duplicate_user.valid?}"
+    puts " - - ASSERTED_NOT UNIQUE True at Line 84 - - - - - - - - - "
   end
 
 #  @user.dup uses the dup method which will create a duplicate user #

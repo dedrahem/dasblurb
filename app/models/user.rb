@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  # before_save { self.email = email.downcase!}
+  before_save { self.email = email.downcase}
   has_secure_password
   has_many :posts
   validates :password, length: { minimum: 4 }
