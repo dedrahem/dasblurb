@@ -9,13 +9,14 @@ class UserTest < ActiveSupport::TestCase
     @user = User.new(user_name: "Mike Vapor", email: "mike@bigcity.com", password: "123456",
     password_confirmation: "123456")
     # @user.save! - why does uncommenting this cause problems
+          # because the ! forces a save and
+          # violates some conditions
+          # stay away from the ! save !!
   end
 
-# /  Jesse had me include the @user.save! when i was failing due to  ??   /
-# /  conflict with tests and the fact i didn't include a password field   /
-# / after adding password the tests passed, also, this is called out as   /
-# / password:  and not password_digest:  the @user.save! provides a way   /
-# / to see an update of any issues during save..???....i think            /
+# /                                            /
+# /                                            /
+
 
   test " in models/user_test.rb, this defined test user should be valid" do
     assert @user.valid?
