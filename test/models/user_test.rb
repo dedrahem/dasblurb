@@ -71,20 +71,25 @@ class UserTest < ActiveSupport::TestCase
   end
 
   # $$$$$$$$$$$$$  DUPLICATE USER   $$$$$$$$$$$$$$$$$$$ #
-  puts "   ^^^^^^^^         LINE 73          ^^^^^^^^^^^^^   "
+  puts "BEGIN :  DUPLICATE USER - - - - LINE 73   user_test.rb  - - - - - - "
+  puts " "
   test "Test that email addresses should be unique, no duplicate addresses" do
     duplicate_user = @user.dup
     duplicate_user.email = @user.email.upcase
     @user.save
-    puts  " The created duplicate user is >>> #{duplicate_user.inspect}"
-    puts "  - - - - - - - - - Line 79 - - - - - - - - -  "
-    puts " The original user's info is  >>> #{@user.inspect}"
+    puts  " The created duplicate user is :> #{duplicate_user.inspect}"
+    puts "  - - - - - - - - Line 79 user_test.rb  - - - - - - - - -  "
+    puts " The original user's info is :> #{@user.inspect}"
     assert_not duplicate_user.valid?
-    puts " - - - - - - - - - - - - - Line 82  - - - - - - - - - "
+    puts " - - - - - - - - - -   Line 82  user_test.rb   - - - - - - - "
     puts " Is the duplicate user valid, is it UNIQUE?( F for Not Unique )=  #{duplicate_user.valid?}"
-    puts " - - ASSERTED_NOT UNIQUE True at Line 84 - - - - - - - - - "
+    puts " - - ASSERTED_NOT UNIQUE True at Line 86 - - - - - - - - - "
+    puts "           end:    user_test.rb                              "
+    puts " "  
   end
-
+puts " "
+puts "END  :  DUPLICATE USER  - - - -   LINE 87    user_test.rb  - - - - - - "
+puts "  "
 #  @user.dup uses the dup method which will create a duplicate user #
 # having all the same attributes as user                            #
 # that dupulication is then assisgned to the duplicate_user         #

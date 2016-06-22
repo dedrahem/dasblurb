@@ -4,7 +4,7 @@ class SignupTest < Capybara::Rails::TestCase
 
   test "sanity" do
     visit sign_up_path
-    assert_content page,  "/users/new"
+    assert_content page, "Sign_Up"
   end
 
   test "sanity two" do
@@ -14,7 +14,7 @@ class SignupTest < Capybara::Rails::TestCase
 
   test "sanity three" do
     visit root_path
-    assert_content page, "Session"
+    assert_content page, "DASHBOARD"
   end
 
 end

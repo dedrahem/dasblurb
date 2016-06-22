@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   def create
     # get the User, validate the Pword, set the session #
     #  and redirect #
-    puts " ............Sessions Controller Line 8 "
+    puts " Execution is now in the Sessions Controller at line 8 "
     puts "                             "
     email = params[:email]
     password = params[:password]
@@ -14,15 +14,16 @@ class SessionsController < ApplicationController
     puts "Info: #{email} | #{password}"
     puts "Has User: #{user.present?}"
     # puts "Correct Password: #{user.authenticate(password)}"
-    puts " ..............LINE 20 ........................."
+    puts " Sessions controller at line 20."
     if user && user.authenticate(password)
       session[:user_id] = user.id
-      redirect_to root_path
-      puts "TRUE at line 21 user && user.authenticate(password)"
+      redirect_to timeline_path
+      puts "Sessions Controller if user && user.authenticate(password)"
+      puts " Set the session id and redirect to timeline_path"
     else
-      puts " failed the if and went to render new .........."
+      puts "Sessions controller failed the user && user.auth password, therefore - render:new"
       render :new
-      puts " end of render new "
+      puts " Session controller - render:new END"
     end
   end
 

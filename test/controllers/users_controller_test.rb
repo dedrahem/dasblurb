@@ -19,17 +19,17 @@ test "| should get users index |" do
   assert_select "title", "List of Users | #{@base_title}"
 end
 
-test "| should get users new |" do
+test "Users Controler Test : Should get users new " do
   get :new
   assert_response :success
-  assert_select "title", "New User Sign_Up | #{@base_title}"
+  assert_select "title", "Sign_Up New User | #{@base_title}"
 end
 
 
-test "| should get users show profile page |" do
+test " Users Controller Test : Should get users show profile page. " do
   get :show, id: @user.id
   assert_response :success
-  assert_select "title", "Show User Profile | #{@base_title}"
+  assert_select "title", "Profile for User | #{@base_title}"
 end
 # get :show becomes
 # get :show, id: @user.id

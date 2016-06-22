@@ -22,9 +22,17 @@
       <!--  </div>  -->
       <!--  <% end %>  -->
       <div class="container"> <!-- container is a BOOTSTRAP reserved DIV -->
+        <% flash.each do |message_type, message| %>
+          <div class="alert alert-<%= message_type %>"><%= message %></div>
+        <% end %>
         <%= yield %>
         <%= render 'layouts/footer' %>
-        <%= debug(params) if Rails.env.development? %>
+        <%= debug(params) if Rails.env.development? %>  <!-- note 1 -->
       </div>
   </body>
 </html>
+
+<!-- note 1   RAILS has 3 default environments  -->
+<!-- test, development and production           -->
+<!-- this line creates a debug window and restricts that -->
+<!-- window to the development environment.  -->
