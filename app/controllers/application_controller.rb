@@ -8,6 +8,8 @@ class ApplicationController < ActionController::Base
  end
 
  def authenticate_user!
+   puts " LINE 11 : application controller in def authenticate_user!  * *"
+   puts " IF @CURRENT_USER.BLANK? then redirect_to sign_in_path * * * * *"
    if @current_user.blank?
     redirect_to sign_in_path
    end
