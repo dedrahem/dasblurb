@@ -89,6 +89,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)  # there is a private method below, but i'm already calling the def above #
     if @user.save
       # the save was successful new user signed up  #
+      log_in @user
       session[:user_id] = @user.id
       # redirect to the root_path via the session sign in  #
       flash[:success] = "Success: Welcome To dasBlurb"
