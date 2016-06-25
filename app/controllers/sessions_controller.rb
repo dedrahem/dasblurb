@@ -48,8 +48,9 @@ class SessionsController < ApplicationController
     # <#= link_to "Log Out", sign_out_path, method: "delete" #>
   def destroy
     puts "*   sessions_controller destroy method  *"
-    puts "*   log_out and redirect to root path   *"
-    log_out
+    puts "*   log_out if logged_in?               *"
+    puts "*   and redirect to root path           *"
+    log_out if logged_in?
     redirect_to root_path
   end
 
