@@ -5,12 +5,24 @@ require 'pp'
 require 'faker'
 User.delete_all
 Post.delete_all
+puts " "
+puts "------------------------------------------------------------"
+puts "-             Seeding Data for user and post               -"
+puts "------------------------------------------------------------"
+puts " "
+
 if User.count == 0
 	usercounter = 0
-	until usercounter == 24
+	User.create(user_name: "Adam Admin",
+							email: "adam@admin.org",
+							password: "adamadmin",
+							password_confirmation: "adamadmin",
+							admin: true)
+	until usercounter == 25
 		user = User.create(user_name: Faker::Name.name,
                 	email: Faker::Internet.email,
-                	password: '1234',
+                	password: '12345',
+									password_confirmation: '12345',
                 	created_at: Faker::Time.between(DateTime.now - 7, DateTime.now - 5),
 			            updated_at: Faker::Time.between(DateTime.now - 4, DateTime.now))
 		Post.create(postbody: Faker::Hipster.sentence,
@@ -21,5 +33,6 @@ if User.count == 0
 	end
 end
 puts "------------------------------------------------------------"
-puts "-              User and Post created                       -"
+puts "-              Seed Data Complete for User and Post        -"
 puts "------------------------------------------------------------"
+puts " "

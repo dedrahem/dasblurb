@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   before_save { self.email = email.downcase}
   has_secure_password
   has_many :posts
-  validates :password, length: { minimum: 4 }
+  validates :password, length: { minimum: 4 }, allow_blank: true
   validates :user_name, presence: true, length: {maximum: 48}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: {maximum: 255},
@@ -10,6 +10,15 @@ class User < ActiveRecord::Base
     uniqueness: { case_sensitive: false }
     #  uniqueness: true
 end
+
+# /  has_secure_password &
+# /  validates :password, length: { minimum: 4 }, allow_blank: true /
+# / work together  !!                                               /
+# / allow blank allows an exception to the minimum length of pass /
+# / word, shoud the password be blank when making a user update   /
+# / this will not affect new user sign up allowing a blank p-word /
+# / has_secure_password enforces presence validations upon        /
+# / the creation of an object                                     /
 
 # / the first line converts the email to lower case prior to save /
 # / test.rb for the actual test that this worked             /

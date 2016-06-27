@@ -4,17 +4,31 @@ require 'faker'
 # this creates model attributes for a new user based on User attributes   #
 #  @user = User.new(user_name: "Genghis Kahn", email: "kahn@mongol.net",  #
 # password: "12345678", password_confirmation: "12345678")                #
-
+# require users to be logged in , define method of logged_in_user
+# invoke the method using , before_action :logged_in_user
+# when, , only: [:edit, :update]   see method below where
+# only:  is used to pass an :only options hash via only: [:edit, :update]
+# before filters apply to every action in a controller, therefore-render
+# we restrict this filter to only act on #edit and #update
+# before action require a logged in user for the index action also
 
 class UsersController < ApplicationController
-
+  before_action :logged_in_user, only: [:index, :edit, :update]
   before_action :correct_user, only: [:edit, :update]
 
     def index
-      @users = User.all
+      # @users = User.all
+      @users = User.paginate(page: params[:page])
       @posts = Post.all
       @follows = Follow.all
     end
+
+    # see index view for will paginate -
+    # will_paginate inside the users view looks for
+    # an @users object, above paginate takes a hash
+    # argument, and the key is :page, the parameter for the actual
+    # page to generate comes from will_paginate, and the PARAMETERS
+    # is defined by params[:page], whew.
 
     def list
       @users = fetch_users
@@ -74,17 +88,21 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  # create new users with STRONG PARAMETERS
+  # create new users with STRONG PARAMETERS * * * * * * * * * * * * * #
   def user_params
       #  params.require(:user).permit(:user_name, :email, :password)  #
       params.require(:user).permit(:user_name, :email, :password, :password_confirmation)
     end
-  # create new users with STRONG PARAMETERS
+  # create new users with STRONG PARAMETERS  * * * * * * * * * * * * * #
 
   def edit
-  end
+    puts " * * * Execution in users_controller def edit * * *"
+    # @user = User.find_by id: params[:id] superceded by
+    # before action and confirm the correct user
+    # @user = User.find(params[:id])
+  end # end def edit
 
-#    OKAY NOW CREATE  #
+#    CREATE NEW USER  #
   def create
     @user = User.new(user_params)  # there is a private method below, but i'm already calling the def above #
     if @user.save
@@ -110,15 +128,53 @@ class UsersController < ApplicationController
 
 
   def update
-  end
+    # @user = User.find_by id: params[:id] is superceded by before action
+    # before action's confirm the correct user
+    # @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      puts " users_ controller: def update user attributes."
+      flash[:success]="Profile is updated"
+      redirect_to @user
+    else
+      puts " users_controller: def update fails : returns false"
+      render 'edit'
+    end # end if
+  end # end def update
 
   def destroy
   end
 
 
-  # private
+  # private this is not used
   #  def user_params
   #  @user = User.new params.require(:user).permit(:user_name, :email, :password, :password_confirmation)
   # end
 
-end
+  # Before filters
+
+  # Confirms a logged-in user
+  def logged_in_user
+    unless logged_in?
+      flash[:danger]="Please Log-In As User"
+      redirect_to login_url
+    end # end unless
+  end # end def
+
+
+    # redirect users attempting to edit another user's
+    # profile, use with a before filter above.  this before
+    # filter defines the @user variable, thus making the variable
+    # redundant in use above, see edit and update actions.
+    # see sessions_helper.rb for method, current_user?(@user)
+    #
+    # Confirms the correct user -
+  def correct_user
+    puts "users_controller: def correct_user"
+    puts " :  redirect to root url unless current user"
+    # @user = User.find(params[:id]) these the same lines
+    @user = User.find_by id: params[:id]
+    redirect_to(root_url) unless current_user?(@user)
+    # redirect_to(root_url) unless @user == current_user
+  end
+
+end # end User Class

@@ -1,8 +1,6 @@
 <%provide(:title, "List of Users")%>
 <h1>Users List</h1>
-<p>Find me in app/views/users/index.html.erb</p>
-<!--  provide (:title, 'Users List')  -->
-<p>what did the above line do</p>
+
 
 <form class="" action="#" method="get">
   <div class="form-group">
@@ -11,11 +9,10 @@
   </div>
 </form>
 
+<%= will_paginate %>
 
-<ul class="users">
-<% @users.each do |user| %>
-  <li>
-    <%= link_to highlight(user.user_name, params[:search_text]), "/users/#{user.id}"%>
-  </li>
-<% end %>
-</ul>
+  <ul class="users">
+      <%= render @users %>
+  </ul>
+
+<%= will_paginate %>

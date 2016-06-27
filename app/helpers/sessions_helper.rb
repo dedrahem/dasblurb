@@ -4,10 +4,14 @@ module SessionsHelper
     session[:user_id] = user.id
   end
 
-
 # session[:user_id] = user.id, this line is already found in the
 # sessions controller at line 48, ?  because the alt method
 # is to put log_in user at that spot which would call this one line method
+
+# returns true if the given user IS the current user
+  def current_user?(user)
+    user == current_user
+  end
 
   # Return the current logged in user
   def current_user
@@ -26,8 +30,6 @@ module SessionsHelper
     session.delete(:user_id)
   @current_user=nil
   end
-
-
 
 
 
