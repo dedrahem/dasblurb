@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   puts "                               "
-  puts " loading: ROUTES.RB, all routes"
+  puts "routes.rb : loading routes - begin"
 
   get 'users/new'
 
@@ -50,5 +50,6 @@ Rails.application.routes.draw do
 
   puts "                             "
 
-  puts " ****** end of routes *******"
+  puts "routes.rb : loading routes - complete"
+  puts " "
 end

@@ -1,18 +1,31 @@
 <%provide(:title, "List of Users")%>
 <h1>Users List</h1>
-
-
-<form class="" action="#" method="get">
-  <div class="form-group">
-    <label for="search_text">Search Text</label>
-    <input type="string" user_name="search_string" value="" class="form-control">
-  </div>
-</form>
-
+<%= puts "  " %>
+<%= puts " status : users index view template begin   >>>>>> ENTERING USER INDEX VIEW " %>
+<%= puts "  " %>
+<!-- User.find_by_user_name("Adam Admim") -->
+<!-- will_paginate is a rails provided method -->
+<!-- you must replace the User.all in the users#index -->
+<!-- with an object that is pagination aware -->
+<!-- the view of paginate will not work if @users contains -->
+<!-- the content of User.all ,  User.paginate basically pulls -->
+<!-- users out of the database a chunk of 30 users at a time.  -->
+<!-- use paginate in place of all in the index action  -->
 <%= will_paginate %>
 
   <ul class="users">
-      <%= render @users %>
+      <% @users.each do |user| %>
+      <li>
+        <%= link_to highlight(user.user_name, params[:search_text]), "/users/#{user.id}" %>
+        <% if current_user.admin? && !current_user?(user) %>
+            | <%= link_to "delete", user, method: :delete,
+                                          data: { confirm: "Delete User?" } %>
+        <% end %>
+      </li>
+    <% end %>
   </ul>
 
 <%= will_paginate %>
+<%= puts "  " %>
+<%= puts " status : users index view template end >>>>>>     EXITING USER INDEX VIEW " %>
+<%= puts "  " %>

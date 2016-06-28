@@ -13,7 +13,25 @@ def setup
 end
 
 
-test "| should get users index |" do
+test "Users Controller: Test should get users index." do
+  puts "  "
+  puts "*************    Test Users Controller : user   ****************"
+  puts " Test: "
+  puts " Test Users Controller : user is #{@user.inspect}"
+  puts " Test: @user.valid? returns   [ #{@user.valid?}   ]"
+  puts " Test: logged_in_user is #{@logged_in_user.inspect} "
+  puts " Test: check for current user, current_user is #{@current_user.inspect}"
+  @current_user = @user
+  puts " Test:  let @current_user = @user "
+  puts " Test: @current_user.valid? returns   [ #{@current_user.valid?}   ]"
+  puts " Test: logged_in_user is  #{@logged_in_user.inspect} "
+  puts " Test: check for current user, current_user is #{@current_user.inspect}"
+  @logged_in_user = @current_user
+  puts " Test: let  @logged_in_user = @current_user "
+  puts " Test: @logged_in_user is valid ?   [ #{@logged_in_user.valid?}   ]"
+  puts " Test: @logged_in_user is #{@logged_in_user.inspect} "
+  puts "*************    Test Users Controller : user   ****************"
+  puts "  "
   get :index
   assert_response :success
   assert_select "title", "List of Users | #{@base_title}"

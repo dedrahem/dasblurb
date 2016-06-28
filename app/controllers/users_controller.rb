@@ -9,18 +9,28 @@ require 'faker'
 # when, , only: [:edit, :update]   see method below where
 # only:  is used to pass an :only options hash via only: [:edit, :update]
 # before filters apply to every action in a controller, therefore-render
-# we restrict this filter to only act on #edit and #update
-# before action require a logged in user for the index action also
+# we restrict this filter to only act on #edit and #update #index
+# bassically must be logged in to index edit update and destroy
+# Fascinating captain, simply fascinating.
+# The correct user is the current user - see lines about 175 for method   #
+# admin_user is def'd below
 
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update]
-
+  before_action :admin_user,   only: :destroy
+puts " "
+puts "execution at: class UsersController < ApplicationController "
+puts " "
     def index
+      puts " "
+      puts " status: users controller # index begin"
       # @users = User.all
       @users = User.paginate(page: params[:page])
       @posts = Post.all
       @follows = Follow.all
+      puts " status: users controller # index end"
+      puts " "
     end
 
     # see index view for will paginate -
@@ -142,22 +152,21 @@ class UsersController < ApplicationController
   end # end def update
 
   def destroy
+    User.find(params[:id]).destroy # this is known as method chaining FIND and DESTROY #
+    flash[:success] = "User Deleted"
+    redirect_to get_users_path
   end
+  # destroy action may be limited to the admin by using a before filter above
 
 
-  # private this is not used
-  #  def user_params
-  #  @user = User.new params.require(:user).permit(:user_name, :email, :password, :password_confirmation)
-  # end
-
-  # Before filters
+  #                           Before filters        #
 
   # Confirms a logged-in user
   def logged_in_user
     unless logged_in?
       flash[:danger]="Please Log-In As User"
-      redirect_to login_url
-    end # end unless
+      redirect_to sign_in_path
+    end # if successful you are logged in, end unless
   end # end def
 
 
@@ -167,14 +176,30 @@ class UsersController < ApplicationController
     # redundant in use above, see edit and update actions.
     # see sessions_helper.rb for method, current_user?(@user)
     #
-    # Confirms the correct user -
+    #     *****     Confirms the correct user     *****     #
+    # THE CORRECT USER IS THE CURRENT USER - if not corrct user #
+    # you will get redirected to the root_path                  #
   def correct_user
-    puts "users_controller: def correct_user"
-    puts " :  redirect to root url unless current user"
+    puts "Confirm the correct user, in "
+    puts "users_controller: def correct_user "
+    puts "with redirect to root url unless current user"
     # @user = User.find(params[:id]) these the same lines
     @user = User.find_by id: params[:id]
-    redirect_to(root_url) unless current_user?(@user)
+    redirect_to(root_path) unless current_user?(@user)
+    # redirect_to(root_url) unless current_user?(@user)
     # redirect_to(root_url) unless @user == current_user
+    # what is root_url? root_path is the ?? dashboard ?
   end
+
+  #                       PRIVATE                   #
+  private
+  #  def user_params
+  #  @user = User.new params.require(:user).permit(:user_name, :email, :password, :password_confirmation)
+  # end
+  # Confirms an Admin User method
+    def admin_user
+      puts "user status: if the current user is not admin redirect to root"
+      redirect_to (root_path) unless current_user.admin?
+    end
 
 end # end User Class
