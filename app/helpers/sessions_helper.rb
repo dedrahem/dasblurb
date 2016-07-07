@@ -1,5 +1,7 @@
 module SessionsHelper
-
+  #  LOOK ! - this helper contains friendly forwarding methods #
+  #  scroll down for notes and the actual methods -
+  #  also see the application controller and the users controller
   def log_in(user)
     session[:user_id] = user.id
   end
@@ -30,6 +32,29 @@ module SessionsHelper
     session.delete(:user_id)
   @current_user=nil
   end
+
+#  ### Redirects back to the stored location OR to the default  #### #
+  def redirect_back_or(default)
+    redirect_to(session[:forwarding_url] || default)
+    session.delete(:forwarding_url)
+  end
+#  ### Redirects back to the stored location OR to the default  #### #
+
+#  <<<<<<<   STORE THE URL THAT IS ATTEMPTING TO BE ACCESSED   >>>>>>  #
+  def store_location
+    session[:forwarding_url] = request.url if request.get?
+  end
+# the method puts the REQUESTED URL request.url into the session hash #
+# variable under the key of :forwarding_url but only in the event     #
+# of accessing as a GET request...                                    #
+#  this must be added to the logged_in_user before filter in the      #
+# users controller.
+
+#  <<<<<<<   STORE THE URL THAT IS ATTEMPTING TO BE ACCESSED   >>>>>>  #
+
+
+
+
 
 
 

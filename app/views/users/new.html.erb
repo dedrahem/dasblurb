@@ -7,8 +7,9 @@
 <!-- <h1>views/users/new.html.erb</h1> -->
 <!-- shared/error_messages  is in app/views/shared/_error_messages.html.erb  -->
 <!-- its a partial  -->
-    <%= form_for @user do |f| %>
-      <%= render 'shared/error_messages' %>
+    <%= form_for(@user) do |f| %>
+      <!-- = render 'shared/error_messages' % -->
+      <%= render 'shared/error_messages', object: f.object %>
       <%= f.label :user_name %>
       <%= f.text_field :user_name, class: 'form-control' %>
       <%= f.label :email %>
@@ -18,6 +19,10 @@
       <%= f.label :password_confirmation, label: "Password Confirmation" %>
       <%= f.password_field :password_confirmation, class: 'form-control' %>
       <%= f.submit "Sign-Up !", class: "btn btn-primary"%>
+      <%= puts "Status:  " %>
+      <%= puts "Status:  Click Button User Sign Up " %>
+      <%= puts "Status:  users/new.html.erb  in form for sign up" %>
+      <%= puts "Status:  " %>
       <% end %>
   </div> <!-- close the col class -->
 </div>  <!-- close the row div  -->

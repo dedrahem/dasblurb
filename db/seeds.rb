@@ -13,12 +13,12 @@ puts " "
 
 if User.count == 0
 	usercounter = 0
-	User.create(user_name: "Adam Admin",
+	User.create(user_name: "Adam McAdmin",
 							email: "adam@admin.org",
 							password: "adamadmin",
 							password_confirmation: "adamadmin",
 							admin: true)
-	until usercounter == 25
+	until usercounter == 70
 		user = User.create(user_name: Faker::Name.name,
                 	email: Faker::Internet.email,
                 	password: '12345',

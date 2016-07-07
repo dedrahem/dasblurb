@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  puts "                               "
+  puts " "
+  puts "Status: app/config/routes.rb   "
   puts "routes.rb : loading routes - begin"
 
   get 'users/new'
@@ -32,24 +33,25 @@ Rails.application.routes.draw do
 
   patch "users/:id" => 'users#update'
 
+  # get "posts/new" => 'posts#new', as: :new_post
+
+  # post "posts" => 'homepage#dashboard', as: :create_post SO WRONG !
+
+  post "posts" => 'posts#create', as: :create_post
+
+  # get "posts" => 'posts#index' repeated in below line
+
   get "posts" => 'posts#index', as: :posts
-
-  get "posts/new" => 'posts#new', as: :new_post
-
-  post "posts" => 'posts#create'
-
-  get "posts" => 'posts#index'
 
   get "posts/:id" => 'posts#show', as: :post
 
-  delete "posts/:id" => 'posts#delete'
+  delete "posts/:id" => 'posts#destroy', as: :destroy_post
 
-  patch "posts/:id" => 'posts#update'
+  # patch "posts/:id" => 'posts#update'
 
-  get "posts/:id/edit" => 'posts#edit', as: :edit_post
+  # get "posts/:id/edit" => 'posts#edit', as: :edit_post
 
   puts "                             "
-
   puts "routes.rb : loading routes - complete"
   puts " "
 end

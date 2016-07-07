@@ -1,5 +1,23 @@
 <%provide(:title, "DASHBOARD")%>
-<h1>The Dashboard</h1>
-<p> This is NOT the acting homepage.  The route is: root 'homepage#dashboard'  </p>
-<h1> and brings you to this URL of localhost:3000 </h1>
-<h1 class="secret">So Many Secrets</h1>
+<h1>Mein Kampfen as dasBlurben</h1>
+<!-- This is NOT the acting homepage -->
+<!--  The route is: root 'homepage#dashboard'  -->
+<!-- and brings you to this URL of localhost:3000 -- >
+<% if logged_in? %>
+  <div class="row">
+    <aside class="col-md-4"> <!--                             ASIDE begin    -->
+      <section class="user_info">
+        <%= render 'shared/user_info' %>  <!-- Partial 1 of 2 -->
+      </section>
+      <section class="micropost_form">
+        <%= render 'shared/dasblurb_form'%> <!-- Partial 2 of 2 -->
+      </section>
+    </aside> <!--                                              ASIDE end     -->
+  </div>
+<% else %>
+  <!-- this is superfluous as users should be logged in to get this far -->
+  <div class="center jumbotron">
+      <h1> dashboard.html.erb </h1>
+  </div>
+  <%= link_to "Go Sign Up", sign_in_path, class: "btn btn-lg btn-primary" %>
+<% end %>

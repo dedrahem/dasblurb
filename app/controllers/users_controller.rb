@@ -15,6 +15,8 @@ require 'faker'
 # The correct user is the current user - see lines about 175 for method   #
 # admin_user is def'd below
 
+# ATTN: see sessions helper for store_ location and see before filter below #
+#  , logged in user moved to appl  see notes below                          #
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update]
@@ -27,7 +29,7 @@ puts " "
       puts " status: users controller # index begin"
       # @users = User.all
       @users = User.paginate(page: params[:page])
-      @posts = Post.all
+      @posts = Post.paginate(page: params[:page])
       @follows = Follow.all
       puts " status: users controller # index end"
       puts " "
@@ -78,12 +80,18 @@ puts " "
 
     # -----                                               ----- #
     # -----                                               ----- #
+    # -----  as paginate inherently works with users here ----- #
+    # -----  the instance variable @post enables posts pa ----- #
 
   def show
     @user = User.find_by id: params[:id]
+    @posts = @user.posts.paginate(page: params[:page])
+    puts " "
+    puts "Status:  Users Controller show method for @user and @posts"
   end
 
-# what does the above do ?  use the find method on the User #
+# what does the above do ?  @user = User.find_by id: params[:id] #
+# use the find method on the User                           #
 # model, User class, to retrieve the user from the database #
 # based off the model's index id, and finding id'd user,    #
 # assign it to an instance variable (per user's table)      #
@@ -106,7 +114,7 @@ puts " "
   # create new users with STRONG PARAMETERS  * * * * * * * * * * * * * #
 
   def edit
-    puts " * * * Execution in users_controller def edit * * *"
+    puts " Status: users controller,  def edit method "
     # @user = User.find_by id: params[:id] superceded by
     # before action and confirm the correct user
     # @user = User.find(params[:id])
@@ -121,8 +129,8 @@ puts " "
       session[:user_id] = @user.id
       # redirect to the root_path via the session sign in  #
       flash[:success] = "Success: Welcome To dasBlurb"
-      puts " You are in the users_controller CREATE session[:user_id] = @user.id"
-      puts "  flash[:success] = Success: Welcome To dasBlurb "
+      puts " Status : users_controller CREATE session[:user_id] = @user.id"
+      puts " flash[:success] = Success: Welcome To dasBlurb "
       puts " Now will redirect to the sign in path"
       redirect_to sign_in_path
     else
@@ -161,15 +169,13 @@ puts " "
 
   #                           Before filters        #
 
-  # Confirms a logged-in user
-  def logged_in_user
-    unless logged_in?
-      flash[:danger]="Please Log-In As User"
-      redirect_to sign_in_path
-    end # if successful you are logged in, end unless
-  end # end def
-
-
+  # Confirms a logged-in user MOVED TO APPLICATION CONTROLLER  !!!!!!!! #
+  # def logged_in_user
+  #   unless logged_in?
+  #    flash[:danger]="Please Log-In As User"
+  #    redirect_to sign_in_path
+  #  end # if successful you are logged in, end unless
+  # end # end def
     # redirect users attempting to edit another user's
     # profile, use with a before filter above.  this before
     # filter defines the @user variable, thus making the variable

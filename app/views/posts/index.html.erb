@@ -2,7 +2,7 @@
 <p>Find me in app/views/posts/index.html.erb</p>
 <div class="postindex"> <!-- postINDEX div -->
 <div class="buffer"> <p></p> </div>  <!--  open and close div -->
-
+<%= will_paginate %>
   <ol>
     <% @posts.each do |post| %>   <!-- # This do IS ended below -->
 
@@ -36,3 +36,4 @@
     <% end %> <!-- # This is the do post end -->
   </ol>
 </div> <!-- close the post INDEX div -->
+<%= will_paginate %>

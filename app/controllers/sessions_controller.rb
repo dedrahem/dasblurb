@@ -4,38 +4,49 @@ class SessionsController < ApplicationController
 
   puts "         ****** YOU ARE HERE   ******    "
   puts "              SessionsController         "
-  puts "          VOID between the def new end   "
-  puts "        method and the def create method "
-  puts " "
+  puts "          def new / def create           "
+  puts "                                         "
+  puts "          added redirect_back_or         "
 
   def create
     puts "                              "
-    puts " Execution is in Sessions Controller create at line 13 "
+    puts "Status: Sessions Controller # is create at line 13 "
     puts "                             "
-    puts " email = params[:email]  "
-    puts " password = params[:password]"
+    puts "email = params[:email]  "
+    puts "password = params[:password]"
     email = params[:email].downcase
     password = params[:password]
     puts "                             "
     user = User.find_by email: email
-    puts "Info: #{email} | #{password}"
+    #   puts "Info: #{email} | #{password}" ####
     puts "Has User: #{user.present?}"
     # puts "Correct Password: #{user.authenticate(password)}"
-    puts " Sessions controller at line 24 "
+    puts " "
+    puts "Status: sessions#create line 25 "
+    puts " "
     if user && user.authenticate(password)
+      puts " "
+      puts "sessions#create: session[:user_id] = user.id"
+      puts "The session user is,  #{user.inspect}"
+      puts " "
       session[:user_id] = user.id
-      # log_in user (not using the helper)
+      puts "This places the user's ID in the temporary session."
+      # log_in user (this is for the helper NOT USING HELPER)
+      # redirect_to timeline_path  blanked this and put in below redirect
+      puts " "
+      puts "sessions#create: now executing, redirect_to timeline_path"
+      # removed this sunday 3rd it directs to the user show page - redirect_back_or(user)
       redirect_to timeline_path
-      puts "SessionsController : session[:user_id] = user.id "
-      puts " This places the user's ID in the temporary session.  See sessions_controll.rb"
+      puts "sessions#create: line 38, after the redirect"
+      puts "  "
     else
-      puts "Sessions controller failed the user && user.auth password, therefore-render:new"
+      puts "sessions#create: failed the user && user.auth password, therefore-render:new"
       flash.now[:danger] = 'Invalid email/password combination'
       render :new
-      puts " Session controller - render:new and END if"
+      puts " sessions#create: - render:new and END if"
       puts " if user fails user authenticate, then go to "
       puts " the views/sessions/new.html.erb and render the new user form "
-      puts " sessions controller line 38 "
+      puts " sessions#create: line 48 "
     end
   end
 

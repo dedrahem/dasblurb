@@ -1,6 +1,26 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 
+/*  What is this assignment ?                               */
+/*  User will redirect to user timeline page after sign in. */
+/*  Timeline will show the user's posts.                    */
+/*  The timeline page will display - the user's posts       */
+/*  and the posts of those who the user is following.       */
+/*  in a timely timeline fashion.                           */
+/*  The user will choose those he/her follows from the      */
+/*  list of users or alternate method of choice             */
+/*  User can follow and unfollow another user               */
+/*  Data seeded using FAKER                                 */
+/*  Posted to HEROKU                                        */
+/*  Travis CI deploys to HEROKU                             */
+/*  Feature tests running on Travis                         */
+/*  Feature Tests : choose 2 or 3                           */
+/*  1, user can sign up                                     */
+/*  2. user can sign in and then see timeline               */
+/*  3. user can sign in, follow a user and see their posts  */
+/*                                                          */
+/*  ######################################################  */
+
 /* variables and defn and mixins, mixins?  */
 
 $gray-medium-light: #eaeaea;
@@ -221,6 +241,62 @@ input {
     color: $state-danger-text;
   }
 }
+
+/*        the posts               dasBlurben     */
+/*                                               */
+/*  ##########################################   */
+.microposts {
+  list-style: none;
+  padding: 0;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+  .user {
+    margin-top: 5em;
+    padding-top: 0;
+  }
+  .content {
+    display: block;
+    margin-left: 60px;
+    img {
+      display: block;
+      padding: 5px 0;
+    }
+  }
+  .timestamp {
+    color: $gray-light;
+    display: block;
+    margin-left: 60px;
+  }
+  .userimage {
+    float: left;
+    margin-right: 10px;
+    margin-top: 5px;
+    }
+  }
+
+  aside {
+    textarea {
+      height: 100px;
+      margin-bottom: 5px;
+    }
+  }
+  span.picture {
+    margin-top: 10px;
+    input {
+      border: 0;
+    }
+  }
+
+/*                the posts dasBlurben          */
+/*                    END END END               */
+/*  ##########################################  */
+
+
+
+
+
 
 /* SESSIONS forms CSS for REMEMBER checkbox */
 /*  .checkbox {                           */

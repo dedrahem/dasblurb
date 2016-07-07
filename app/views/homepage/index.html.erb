@@ -1,6 +1,30 @@
 <%provide(:title, "My Timeline")%>
-<h1>USER TIMELINE - User Follows</h1>
-<!--  <p>Find me in app/views/homepage/index.html.erb</p> -->
-<!--  <p>This is MY APP's homepage - it is at localhost:3000/homepage</p>  -->
-<!--  <p>...</p>  -->
-<!--  <p>the user timeline or app homepage</p>  -->
+<h1>Users Timeline - Status Feed</h1>
+<%= puts " * * * * * * * *    index.html.erb    * * * * * * * * * " %>
+
+<!-- div class="row" -->
+<!-- div class = "col-md-8" -->
+<!-- h3> - Timeline Feed - </h3 -->
+<!-- render 'shared/feed'% -->
+<!-- /div -->
+<!-- /div -->
+
+<% if logged_in? %>
+  <div class="row">
+    <aside class="col-md-4"> <!--                             ASIDE begin    -->
+      <section class="user_info">
+        <%= render 'shared/user_info' %>                 <!-- Partial 1 of 2 -->
+      </section>
+    </aside> <!--                                              ASIDE end     -->
+    <div class="col-md-8">
+      <h3> User Timeline </h3>
+      <% @feed_items = current_user.feed %>
+      <%= render 'shared/feed'%>
+      </div>
+<% else %>
+  <!-- this is superfluous as users should be logged in to get this far -->
+  <div class="center jumbotron">
+      <h1> dashboard.html.erb </h1>
+  </div>
+  <%= link_to "Go Sign In", sign_in_path, class: "btn btn-lg btn-primary" %>
+<% end %>

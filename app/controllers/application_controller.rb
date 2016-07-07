@@ -16,6 +16,25 @@ class ApplicationController < ActionController::Base
     redirect_to sign_in_path
    end
  end
+
+private
+  # this method was moved from the users controller, user controller    #
+  # still contains the before filter call for logged_in_user            #
+  # this method needed by the Users controller AND the Posts controller #
+  # So we place the METHOD in this, the Application controller it being #
+  # the base class the progenitor of all controllers                    #
+ def logged_in_user
+   unless logged_in?
+     puts " "
+     puts " Status: def logged_in_user via Application Controller    >"
+     puts " Status: method is called by users and posts controllers  >"
+     puts " "
+     # store_location  taking this out until later ---------------------#
+     flash[:danger]="Please Log-In As User"
+     redirect_to sign_in_path
+   end # if successful you are logged in, end unless
+ end # end def
+
 end
 # RAILS has a sessions method, who knew.  #
 # treat sessions as if it were a hash and assign #

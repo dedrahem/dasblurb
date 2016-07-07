@@ -1,0 +1,9 @@
+<%=form_for(@post) do |f|%>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_area :postbody, placeholder: "Enter New dasBlurben"%>
+  </div>
+  <%=f.submit "POST : Click dasBlurben Button ", class: "btn btn-primary"%>
+  <%=puts "Status: button clicked post in form "%>
+<% end %>
+<!-- friday 575 1/7  -->

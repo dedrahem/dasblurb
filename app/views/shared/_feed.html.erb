@@ -1,0 +1,19 @@
+
+<!-- the @feed_items variable is provided by homepage#dashboard -->
+<!-- of the homepage controller.  user timeline NOT homepage    -->
+
+<% if @feed_items.any? %>
+  <ol class="microposts">
+    <%=render @feed_items%>
+  </ol>
+  <%=will_paginate @feed_items%>
+<% end %>
+
+<!-- _feed partial defers rendering to post partial, posts/_post.html.erb -->
+<!-- Rails will call to post partial bc. each element of @feed_items has  -->
+<!-- or is a class of Post.  Go see.  Thus Rails will look for a partial  -->
+<!-- with the corresponding name in the views directory of the given      -->
+<!-- resource.  art.tut. 583 .  the given resource is app/views/posts/    -->
+<!-- _post.html.erb                                                       -->
+<!--                      Rails just knows                                -->
+<!-- add the feed to the timeine page by rendering the feed partial       -->
