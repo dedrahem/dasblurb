@@ -1,52 +1,57 @@
 class SessionsController < ApplicationController
   def new
   end
-
-  puts "         ****** YOU ARE HERE   ******    "
-  puts "              SessionsController         "
-  puts "          def new / def create           "
-  puts "                                         "
-  puts "          added redirect_back_or         "
+  puts "   i can put my pants on all by myself.         *"
+  puts "                                                *"
+  puts "                            "
+  puts "       STARTED Sessions Controller              *"
+  puts "       def new in sessions controller           *"
+  puts "                                                *"
 
   def create
     puts "                              "
-    puts "Status: Sessions Controller # is create at line 13 "
+    puts "Status: Sessions_Controller#create at line 13 "
     puts "                             "
-    puts "email = params[:email]  "
-    puts "password = params[:password]"
+    puts "setting : email = params[:email]  "
+    puts "setting : password = params[:password]"
     email = params[:email].downcase
     password = params[:password]
     puts "                             "
     user = User.find_by email: email
+    puts " setting session: user = User.find_by email: email"
     #   puts "Info: #{email} | #{password}" ####
-    puts "Has User: #{user.present?}"
+    puts "Has User?, is user present is : #{user.present?}"
     # puts "Correct Password: #{user.authenticate(password)}"
     puts " "
-    puts "Status: sessions#create line 25 "
+    puts "Status: beginning user and user.authenticate "
     puts " "
     if user && user.authenticate(password)
       puts " "
-      puts "sessions#create: session[:user_id] = user.id"
-      puts "The session user is,  #{user.inspect}"
+      puts "The session user is user.inspect :   #{user.inspect}"
       puts " "
       session[:user_id] = user.id
+      puts "Assigning the session id using: session[:user_id] = user.id"
       puts "This places the user's ID in the temporary session."
       # log_in user (this is for the helper NOT USING HELPER)
       # redirect_to timeline_path  blanked this and put in below redirect
       puts " "
-      puts "sessions#create: now executing, redirect_to timeline_path"
+      puts "$$$$$   : You are still in sessions#create: "
+      puts "$$$$$$  : Will now execute, redirect_to timeline_path"
+      puts " "
       # removed this sunday 3rd it directs to the user show page - redirect_back_or(user)
       redirect_to timeline_path
-      puts "sessions#create: line 38, after the redirect"
+      puts " "
+      puts "$$$$ You are in sessions#create: immediately after the redirect_to timeline_path"
+      puts "     having now returned from the redirect, and will now end the authenticate process."
       puts "  "
     else
       puts "sessions#create: failed the user && user.auth password, therefore-render:new"
       flash.now[:danger] = 'Invalid email/password combination'
       render :new
       puts " sessions#create: - render:new and END if"
-      puts " if user fails user authenticate, then go to "
-      puts " the views/sessions/new.html.erb and render the new user form "
-      puts " sessions#create: line 48 "
+      puts "      if user fails user authenticate, then go to "
+      puts "           the views/sessions/new.html.erb and render the new user form "
+      puts "  "
     end
   end
 
@@ -58,9 +63,9 @@ class SessionsController < ApplicationController
     # contains the log out link of
     # <#= link_to "Log Out", sign_out_path, method: "delete" #>
   def destroy
-    puts "*   sessions_controller destroy method  *"
-    puts "*   log_out if logged_in?               *"
-    puts "*   and redirect to root path           *"
+    puts " "
+    puts "Status: sessions_controller, destroy method "
+    puts ""
     log_out if logged_in?
     redirect_to root_path
   end

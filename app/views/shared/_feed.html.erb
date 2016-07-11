@@ -1,19 +1,12 @@
-
-<!-- the @feed_items variable is provided by homepage#dashboard -->
-<!-- of the homepage controller.  user timeline NOT homepage    -->
-
+<!-- the @feed_items instance variable is defined in the homepage#index  -->
+<!-- as # @feed_items = current_user.feed.paginate(page: params[:page])  -->
+<!-- Hompage Index is intended to be the User's Timeline or Feed         -->
+<!-- How did we get here ? From the hompage/index.html view using        -->
+<!--  render 'shared/feed'                                               -->
+<%=puts "In shared/_feed.html as rendered, @feed_items.inspect is : #{@feed_items.inspect}   !"%>
 <% if @feed_items.any? %>
   <ol class="microposts">
     <%=render @feed_items%>
   </ol>
   <%=will_paginate @feed_items%>
 <% end %>
-
-<!-- _feed partial defers rendering to post partial, posts/_post.html.erb -->
-<!-- Rails will call to post partial bc. each element of @feed_items has  -->
-<!-- or is a class of Post.  Go see.  Thus Rails will look for a partial  -->
-<!-- with the corresponding name in the views directory of the given      -->
-<!-- resource.  art.tut. 583 .  the given resource is app/views/posts/    -->
-<!-- _post.html.erb                                                       -->
-<!--                      Rails just knows                                -->
-<!-- add the feed to the timeine page by rendering the feed partial       -->

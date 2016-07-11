@@ -9,12 +9,17 @@ class ApplicationController < ActionController::Base
  end
 
  def authenticate_user!
-   puts " LINE 11 : application controller in def authenticate_user!  * *"
-   puts " IF @CURRENT_USER.BLANK? then redirect_to sign_in_path * * * * *"
+   puts "  "
+   puts "$$$ Status: application controller in def authenticate_user! method        *"
+   puts "$$$         IF @CURRENT_USER.BLANK? then redirect_to sign_in_path          *"
+   puts "$$$ Status: application controller, {@current_user.inspect} is :  #{@current_user.inspect}"
+   puts " "
    if @current_user.blank?
-     puts "  !! application controller :  @current_user is blank, redirect"
+     puts "  !! application controller : @current_user IS BLANK, will now redirect to sign in path."
     redirect_to sign_in_path
    end
+   puts " END of def authenticate_user! in the application controller"
+   puts " "
  end
 
 private

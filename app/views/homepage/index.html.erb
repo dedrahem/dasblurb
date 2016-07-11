@@ -1,7 +1,9 @@
 <%provide(:title, "My Timeline")%>
 <h1>Users Timeline - Status Feed</h1>
-<%= puts " * * * * * * * *    index.html.erb    * * * * * * * * * " %>
-
+<%= puts "  " %>
+<%= puts "  " %>
+<%= puts " * * * * * * * * *    BEGIN  index.html.erb    BEGIN  * * * * * * * * * " %>
+<%= puts "  " %>
 <!-- div class="row" -->
 <!-- div class = "col-md-8" -->
 <!-- h3> - Timeline Feed - </h3 -->
@@ -18,7 +20,8 @@
     </aside> <!--                                              ASIDE end     -->
     <div class="col-md-8">
       <h3> User Timeline </h3>
-      <% @feed_items = current_user.feed %>
+      <%=puts "In homepage/index.html, prior to render to _feed, @feed_items.inspect is : #{@feed_items.inspect}   !"%>
+      <%= puts "  " %>
       <%= render 'shared/feed'%>
       </div>
 <% else %>

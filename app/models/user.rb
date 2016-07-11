@@ -11,16 +11,54 @@ class User < ActiveRecord::Base
     #  uniqueness: true
 
   # will define the prototype timeline or feed
-  # refer to Following Users for complete implementation of feature #
-  # ? mark below is used to escape the id before the SQL query
-  # avoiding an SQL injection.  This is a good technique.
-  # the use of feed is about to become very convoluted ! requiring an
-  # @feed_items instance variable for the user's feed, and then a timeline
-  # feed partial to the timeline display page.   !!!! yikes.
-  def feed
+
+   def feed
+    puts "   "
+    puts "   "
+    puts "                - - - - - - - - - -   USER MODEL ENTER - - - - - - - - "
+    puts " "
+    puts "$> Status: Now in the User Model for the .feed method.   FEED METHOD"
+    puts " "
+    puts "$> find using #(id.inspect) the vaulue of id is:  #{id.inspect}     >>>>>>"
+    puts " "
+    puts " "
+    puts "$> find using #(@user_feed_id.inspect) the id of the feed user  :  #{@user_feed_id}     >>>>>>"
+    puts " "
+    puts "$> In line 38, Let @user_feed = Post.where('user_id=?',id) "
+    puts "                  will go to the Post data retrieve the posts having a user_id of the"
+    puts "                  post being the same as the id of our enterprising current_user,"
+    puts "                  with id 4, because his name is easy to spell."
+    puts "  "
+    puts "@user_feed.each do |post|,    puts # {post.inspect} "
+    puts "  "
+    puts "Achtung!: What happens if you call, # {posts.inspect}  : FROM WITHIN THE EACH DO LOOP  !!."
+    puts "  "
+    # puts "What is in your # {posts.inspect} ? $> #{posts.inspect}  "
+    puts "  "
+    @user_feed = Post.where("user_id=?",id)
+    @user_feed.each do |post|
+      puts " "
+      puts " #{post.inspect}"
+    end
+    puts "  "
+    puts "  "
+    puts "Achtung!: What happens if you call, # {@user_feed.inspect}  : YOU ARE NOW OUTSIDE THE LOOP ...."
+    puts "  "
+    puts "What is in your # {@user_feed.inspect} ? $> #{@user_feed.inspect}  "
+    puts "  "
+    puts "$>> OR, listed with an each do |feed|"
+    @user_feed.each do |feed|
+      puts " "
+      puts " #{feed.inspect}"
+    end
+    puts "  "
+    puts " "
+    puts "              ********** - - - -    USER MODEL EXIT   - - - -   *********  "
+    puts "  "
+    puts "  "
     Post.where("user_id=?",id)
-    puts "Status: User Model feed method"
-  end
+   end
+# @posts = @user.posts.paginate(page: params[:page])
 # /  the above is equivalent to : 582   /
 # /  def feed                           /
 # /    posts                            /

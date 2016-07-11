@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   puts " "
   puts "Status: app/config/routes.rb   "
+  puts " "
   puts "routes.rb : loading routes - begin"
 
   get 'users/new'
