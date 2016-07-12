@@ -2,10 +2,15 @@
 <!-- this partial for showing a single post        -->
 <!--  this is the SHOW or DISPLAY page             -->
 
-<li id="post-<%=post.id%>">
+<!--    <li id="post-<%=post.id%>"> -->
+<li id="<%=post.id%>">
+  <% puts "$$> Execution is now in the post partial form _post.html for user posts"%>
   <span class="user"><%= link_to post.user.user_name, post.user %></span>
   <span class="content"><%= post.postbody %></span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(post.created_at) %> ago.
+    <% if current_user?(post.user) %>
+      <%= link_to "delete", post, method: :delete, data: {confirm: "Are you sure?"} %>
+    <% end %>
   </span>
 </li>

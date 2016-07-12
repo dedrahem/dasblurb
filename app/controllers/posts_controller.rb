@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   #  before a post is allowed check eligible
   before_action :logged_in_user, only: [:create, :destroy]
+  before_action :correct_user, only: :destroy
 
       before_action do
           if @current_user.nil?
@@ -77,12 +78,19 @@ class PostsController < ApplicationController
     def destroy  # IS IT DELETE OR DESTROY - it's destroy
       @post = Post.find_by id: params[:id]
       @post.destroy
-      redirect_to posts_path
+      flash[:success] = "dabBlurb Deleted"
+      # redirect_to posts_path
+      redirect_to request.referrer || posts_path
     end
 
     private
       def post_params
         params.require(:post).permit(:postbody)
+      end
+
+      def correct_user
+        @post = current_user.posts.find_by(id: params[:id])
+        redirect_to timeline_path if @post.nil?
       end
 
   end # end class
