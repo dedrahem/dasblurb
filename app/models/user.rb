@@ -10,8 +10,16 @@ class User < ActiveRecord::Base
     uniqueness: { case_sensitive: false }
     #  uniqueness: true
 
-  # will define the prototype timeline or feed
+  has_many :active_relationships, class_name: "Relationship",
+                                  foreign_key: "follower_id",
+                                  dependent: :destroy
+  has_many :passive_relationships, class_name: "Relationship",
+                                  foreign_key: "followed_id",
+                                  dependent: :destroy
+  has_many :following, through: :active_relationships, source: :followed
+  has_many :followers, through: :passive_relationships, source: :follower
 
+  # will define the prototype timeline or feed
    def feed
     puts "   "
     puts "   "
@@ -64,6 +72,22 @@ class User < ActiveRecord::Base
 # /    posts                            /
 # /  end                                /
 
+
+  # a method to follow a user
+  def follow(other_user)
+    active_relationships.create(followed_id: other_user.id)
+  end
+
+  # unfollow a user
+  def unfollow(other_user)
+    active_relationships.find_by(followed_id: other_user.id).destroy
+  end
+
+  # will RETURN TRUE is the current user is following the other user
+
+  def following?(other_user)
+    following.include?(other_user)
+  end
 
 end
 # /       - - - -   END OF USER MODEL        - - - -         / #
