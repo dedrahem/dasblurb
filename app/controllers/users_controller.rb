@@ -18,9 +18,11 @@ require 'faker'
 # ATTN: see sessions helper for store_ location and see before filter below #
 #  , logged in user moved to appl  see notes below                          #
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :following, :followers]
+  # before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user,   only: :destroy
+
 puts " "
 puts "execution at: class UsersController < ApplicationController "
 puts " "
@@ -186,15 +188,30 @@ puts " "
     # THE CORRECT USER IS THE CURRENT USER - if not corrct user #
     # you will get redirected to the root_path                  #
   def correct_user
-    puts "Confirm the correct user, in "
-    puts "users_controller: def correct_user "
+    puts " "
+    puts "Confirm the correct user, in users_controller: def correct_user"
     puts "with redirect to root url unless current user"
+    puts " "
     # @user = User.find(params[:id]) these the same lines
     @user = User.find_by id: params[:id]
     redirect_to(root_path) unless current_user?(@user)
     # redirect_to(root_url) unless current_user?(@user)
     # redirect_to(root_url) unless @user == current_user
     # what is root_url? root_path is the ?? dashboard ?
+  end
+
+  def following
+    @title = "Following"
+    @user = User.find(params[:id])
+    @users = @user.following.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "Followers"
+    @user = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
   end
 
   #                       PRIVATE                   #

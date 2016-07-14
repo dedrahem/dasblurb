@@ -31,8 +31,24 @@ if User.count == 0
 									updated_at: Faker::Time.between(DateTime.now - 4, DateTime.now))
   usercounter = usercounter + 1  #  selects the number of users that are created
 	end
+	puts "  "
+	puts "  "
+	puts "  "
+	puts "------------------------------------------------------------"
+	puts "-       Seeding the Followed / Following Relations         -"
+	puts "------------------------------------------------------------"
+	puts "  "
+	puts "  "
+	users = User.all
+	user = users[3]
+	following = users[4..35]
+	followers = users[8..30]
+	following.each {|followed| user.follow(followed)}
+	followers.each {|follower| follower.follow(user)}
+	puts " "
+	puts " "
 end
 puts "------------------------------------------------------------"
-puts "-              Seed Data Complete for User and Post        -"
+puts "-     Seed Data Complete - User and Post and Relation      -"
 puts "------------------------------------------------------------"
 puts " "

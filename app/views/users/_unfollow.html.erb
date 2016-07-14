@@ -1,0 +1,9 @@
+<%= form_for(current_user.active_relationships.find_by(followed_id: @user.id),
+            html:{method: :delete},
+            remote: true) do |f| %>
+  <%= f.submit "Un-Follow", class: "btn" %>
+<% end %>
+
+
+<!-- This form servers to find existing relationships and destroy -->
+<!-- them via a DELETE request. -->

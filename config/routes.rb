@@ -52,6 +52,16 @@ Rails.application.routes.draw do
 
   # get "posts/:id/edit" => 'posts#edit', as: :edit_post
 
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+  resources :account_activations, only: [:edit]
+  resources :password_resets,     only: [:new, :create, :edit, :update]
+  resources :posts,               only: [:create, :destroy]
+  resources :relationships,       only: [:create, :destroy]
+  
   puts "                             "
   puts "routes.rb : loading routes - complete"
   puts " "
