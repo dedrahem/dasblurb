@@ -53,7 +53,7 @@ class HomepageController < ApplicationController
       puts " "
       # @post = current_user.posts.build  is the original line
       # @feed_items = current_user.feed.paginate(page: params[:page]) the original line
-      puts "In the homepage#index and  EXECUTING NOW !! :  @feed_items = current_user.feed"
+      puts "In the homepage#index and  EXECUTING NOW line 59 :  @feed_items = current_user.feed"
       puts "  "
       puts "  "
       @feed_items = current_user.feed.paginate(page: params[:page])

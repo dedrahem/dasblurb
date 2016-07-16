@@ -72,6 +72,14 @@ class User < ActiveRecord::Base
 # /    posts                            /
 # /  end                                /
 
+# uf 12.43 return a user's status feed, ! RAW ! SQL RUBY RAILS ! RAW !
+  def feed
+    # //Post.where("user_id (:following_ids) OR user_id = :user_id", following_ids:, following_ids, user_id: id) /
+    following_ids = "SELECT followed_id FROM relationships
+                     WHERE  follower_id = :user_id"
+    Post.where("user_id IN (#{following_ids})
+                     OR user_id = :user_id", user_id: id)
+  end
 
   # a method to follow a user
   def follow(other_user)
