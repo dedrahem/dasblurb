@@ -47,8 +47,15 @@ end
 test " Users Controller Test : Should get users show profile page. " do
   get :show, id: @user.id
   assert_response :success
-  assert_select "title", "Profile for User | #{@base_title}"
+  assert_select "title", "Test User | #{@base_title}"
 end
+
+# <Profile for User | dasBLURB die meisten 175> expected but was
+# <Test User | dasBLURB die meisten 175>..
+# Expected 0 to be >= 1.
+
+
+
 # get :show becomes
 # get :show, id: @user.id
 # get "users/:id" => 'users#show', as: :user

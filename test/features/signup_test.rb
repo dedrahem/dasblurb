@@ -14,7 +14,7 @@ class SignupTest < Capybara::Rails::TestCase
 
   test "sanity three" do
     visit root_path
-    assert_content page, "DASHBOARD"
+    assert_content page, "Blurb"
   end
 
 end

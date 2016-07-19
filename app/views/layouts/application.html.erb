@@ -27,8 +27,9 @@
         <% end %>
         <%= yield %>
         <%= render 'layouts/footer' %>
-        <%= debug(params) if Rails.env.development? %>  <!-- note 1 -->
+        <!-- = debug(params) if Rails.env.development? %>     note 1 -->
       </div>
+      <%= puts "          debug params IS DISABLED "%>
       <%= puts "    Status: layouts/application.htmt.erb "%>
       <%= puts "  *********   localhost:3000     ********* "%>
       <%= puts " waiting for user input at sign_in or sign_up form "%>

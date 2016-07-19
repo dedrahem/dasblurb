@@ -19,59 +19,9 @@ class User < ActiveRecord::Base
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
-  # will define the prototype timeline or feed
-   def feed
-    puts "   "
-    puts "   "
-    puts "                - - - - - - - - - -   USER MODEL ENTER - - - - - - - - "
-    puts " "
-    puts "$> Status: Now in the User Model for the .feed method.   FEED METHOD"
-    puts " "
-    puts "$> find using #(id.inspect) the vaulue of id is:  #{id.inspect}     >>>>>>"
-    puts " "
-    puts " "
-    puts "$> find using #(@user_feed_id.inspect) the id of the feed user  :  #{@user_feed_id}     >>>>>>"
-    puts " "
-    puts "$> In line 38, Let @user_feed = Post.where('user_id=?',id) "
-    puts "                  will go to the Post data retrieve the posts having a user_id of the"
-    puts "                  post being the same as the id of our enterprising current_user,"
-    puts "                  with id 4, because his name is easy to spell."
-    puts "  "
-    puts "@user_feed.each do |post|,    puts # {post.inspect} "
-    puts "  "
-    puts "Achtung!: What happens if you call, # {posts.inspect}  : FROM WITHIN THE EACH DO LOOP  !!."
-    puts "  "
-    # puts "What is in your # {posts.inspect} ? $> #{posts.inspect}  "
-    puts "  "
-    @user_feed = Post.where("user_id=?",id)
-    @user_feed.each do |post|
-      puts " "
-      puts " #{post.inspect}"
-    end
-    puts "  "
-    puts "  "
-    puts "Achtung!: What happens if you call, # {@user_feed.inspect}  : YOU ARE NOW OUTSIDE THE LOOP ...."
-    puts "  "
-    puts "What is in your # {@user_feed.inspect} ? $> #{@user_feed.inspect}  "
-    puts "  "
-    puts "$>> OR, listed with an each do |feed|"
-    @user_feed.each do |feed|
-      puts " "
-      puts " #{feed.inspect}"
-    end
-    puts "  "
-    puts " "
-    puts "              ********** - - - -    USER MODEL EXIT   - - - -   *********  "
-    puts "  "
-    puts "  "
-    Post.where("user_id=?",id)
-   end
-# @posts = @user.posts.paginate(page: params[:page])
-# /  the above is equivalent to : 582   /
-# /  def feed                           /
-# /    posts                            /
-# /  end                                /
 
+# this was competing with the orginal initial start up feed since both were #
+# still on the page the original proto feed is now removed ,
 # uf 12.43 return a user's status feed, ! RAW ! SQL RUBY RAILS ! RAW !
   def feed
     # //Post.where("user_id (:following_ids) OR user_id = :user_id", following_ids:, following_ids, user_id: id) /

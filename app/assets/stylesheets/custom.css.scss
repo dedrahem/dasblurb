@@ -21,37 +21,43 @@
 /*                                                          */
 /*  ######################################################  */
 
-/* variables and defn and mixins, mixins?  */
+/* variables and defn and mixins, SASS MIXINS  */
 
 $gray-medium-light: #eaeaea;
 /* below is a SASS mix-in box_sizing which allows */
 /* a group of CSS rules to be used for multiple elements */
 /* works with the debug_dump - This mixin is called box_sizing */
-@mixin box_sizing {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
+
+  @mixin box_sizing {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
 /* the facility is defined above and included below */
-.debug_dump {
-  clear: both;
-  float: left;
-  width: 100%;
-  margin-top: 40px;
-  @include box_sizing;
-}
+/* disable SASS for displaying the debug info in the view 280 */
+/* .debug_dump {         */
+/*  clear: both;       */
+/*  float: left;       */
+/*  width: 100%;
+/*  margin-top: 40px;       */
+/*  @include box_sizing;       */
+/* }       */
 
 /* generic universal */
 
 body {
-  padding-top: 40px;
-  border: 4px;
+  padding-top: 60px;
+  border-top: 4px;
+  border-right: 1px;
+  border-bottom: 1px;
+  border-left: 1px;
   border-color: black;
   border-style: solid;
 }
 
 section {
-  overflow: auto;
+  overflow:auto;
 }
 
 textarea {
@@ -72,7 +78,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 4em;
+  font-size: 3em;
   letter-spacing: 1px;
   margin-bottom: 30px;
   text-align: center;
@@ -84,7 +90,7 @@ h2 {
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: $gray-medium-light;
+  color: #777;
 }
 
 p {
@@ -92,7 +98,7 @@ p {
   line-height: 1.7em;
 }
 
-/* USERS INDEX */
+/* USERS INDEX USERS INDEX  USERS INDEX  USERS INDEX  */
 
 .users {
   list-style: none;
@@ -108,37 +114,37 @@ p {
 /* i put in a header much later due to problems   */
 /* with the layout partial, tinybox was strictly  */
 /* for experimenting with an image and background */
+/* and is currently not used, image no implement  */
 
+/*.tinybox {                    */
+/*  float: left;                */
+/*  margin-right: 10px;         */
+/*  font-size: 1.7em;           */
+/*  color: #fff;                */
+/*  text-transform: uppercase;  */
+/*  letter-spacing: -1px;       */
+/*  padding-top: 0px;           */
+/*  font-weight: bold;          */
+/*  border-color: gray;         */
+/*  border-width: 2px;          */
+/*  border-style: solid;        */
+/*  height: 60px;               */
+/*  width: 100%;                */
+/*  overflow: hidden;           */
+/*  }                           */
 
-.tinybox {
-  float: left;
-  margin-right: 10px;
-  font-size: 1.7em;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-  padding-top: 0px;
-  font-weight: bold;
-  border-color: gray;
-  border-width: 2px;
-  border-style: solid;
-  height: 60px;
-  width: 100%;
-  overflow: hidden;
-}
+/*.tinybox:hover {           */
+/*  color: #fff;             */
+/*  text-decoration: none;   */
+/* }                         */
 
-.tinybox:hover {
-  color: #fff;
-  text-decoration: none;
-}
-
-/*  FOOTER FOOTER FOOTER  */
+/*  FOOTER FOOTER FOOTER       FOOTER FOOTER FOOTER    */
 
 footer {
-  margin-top: 40px;
+  margin-top: 45px;
   padding-top: 5px;
-  border-top: 2px solid #eaeaea;
-  color: $gray-medium-light;
+  border-top: 0px solid #eaeaea;
+  color: #777;
   a {
     color: $gray;
     &:hover {
@@ -158,9 +164,10 @@ footer {
   }
 }
 
+/* FOOTER  END  FOOTER  FOOTER  END  FOOTER  FOOTER  END  FOOTER  */
 
-/* FOOTER  END  FOOTER  */
-                            /* SIDEBAR For USER  */
+          /* SIDEBAR For USER -- SIDEBAR For USER -- SIDEBAR For USER */
+          /* Candygram for Mongo Candygram for Mongo   */
 aside {
   section.user_info {
     margin-top: 20px;
@@ -169,7 +176,7 @@ aside {
     padding: 10px 0;
       margin-top: 20px;
       &:first-child {
-        border: 3px;
+        border: 0;
         border-color: green;
         padding-top: 0;
       }
@@ -179,16 +186,16 @@ aside {
       line-height: 1;
     }
     h1 {
-      font-size: 12px;
+      font-size: 8px;
       text-align:left;
       letter-spacing: 1px;
       margin-bottom: 3px;
-      margin-top: 2px;
+      margin-top: 0px;
     }
   }
 }
 
-/* .......          SIDEBAR   ........... */
+/* .......          SIDEBAR   END   ........... */
 aside {
   section.user_info {
     margin-top: 20px;
@@ -277,8 +284,8 @@ input {
   list-style: none;
   padding: 0;
   li {
-    padding: 10px 0;
-    border-top: 1px solid #e8e8e8;
+    padding: 10px 0px;
+    border-top: 3px solid #e8e8e8;
   }
   .user {
     margin-top: 5em;
@@ -323,9 +330,6 @@ input {
 
 
 
-
-
-
 /* SESSIONS forms CSS for REMEMBER checkbox */
 /*  .checkbox {                           */
 /*                                        */
@@ -341,10 +345,6 @@ input {
 /*    width: auto;                        */
 /*    margin-left: 1px;                   */
 /*  }                                     */
-
-
-
-
 
 
 
