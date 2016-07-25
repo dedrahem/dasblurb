@@ -61,8 +61,10 @@ Rails.application.routes.draw do
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :posts,               only: [:create, :destroy]
   resources :relationships,       only: [:create, :destroy]
-  
+
   puts "                             "
-  puts "routes.rb : loading routes - complete"
+  puts "routes.rb : loading routes - completed"
+  puts " "
+  puts "$$>> #{Time.zone.now} "
   puts " "
 end

@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   before_action :admin_user,   only: :destroy
 
 puts " "
-puts "execution at: class UsersController < ApplicationController "
+puts "and BOOM!  You are now in the UsersController - Yes! the Users Controller"
 puts " "
     def index
       puts " "

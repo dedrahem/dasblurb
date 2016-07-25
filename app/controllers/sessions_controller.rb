@@ -1,21 +1,23 @@
 class SessionsController < ApplicationController
   def new
   end
-  puts "   i can put my pants on all by myself.         *"
-  puts "                                                *"
-  puts "                            "
-  puts "       STARTED Sessions Controller              *"
-  puts "       def new in sessions controller           *"
-  puts "                                                *"
+
+  puts "   "
+  puts "                    STARTED Sessions Controller "
+  puts "                    def new in sessions controller "
+  puts "   "
 
   def create
-    puts "                              "
-    puts "Status: Sessions_Controller#create at line 13 "
+    puts " oooooooooooooooooo                                 ooooooooooooooooooooo"
+    puts " "
+    puts "Status: you are now at line 14 - Sessions_Controller # create or def create  "
     puts "                             "
     puts "setting : email = params[:email]  "
     puts "setting : password = params[:password]"
     email = params[:email].downcase
     password = params[:password]
+    puts " email is:  #{email.inspect}"
+    puts " the password is: #{password.inspect}"
     puts "                             "
     user = User.find_by email: email
     puts " setting session: user = User.find_by email: email"

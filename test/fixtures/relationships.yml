@@ -1,10 +1,19 @@
 # Read about fixtures at
 # http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+# use with the test_helper.rb for user log_in_as method
 
-# one:
-#  follower_id: 1
-#  followed_id: 1
+one:
+  follower: wally
+  followed: jamal
 
-# two:
-#  follower_id: 1
-#  followed_id: 1
+two:
+  follower: wally
+  followed: hasben
+
+three:
+  follower: jamal
+  followed: wally
+
+four:
+  follower: jasmine
+  followed: wally

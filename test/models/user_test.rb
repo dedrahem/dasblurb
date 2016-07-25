@@ -13,10 +13,10 @@ class UserTest < ActiveSupport::TestCase
           # violates some conditions
           # stay away from the ! save !!
   end
-
-# /                                            /
-# /                                            /
-
+puts " "
+puts "$$>  EXECUTION IS NOW IN :  test/models/user_test.rb  :  defined test user should be valid"
+puts "$$>  note that there is a setup in this module test for a new user - does that cause a conflict"
+puts " "
 
   test " in models/user_test.rb, this defined test user should be valid" do
     assert @user.valid?
@@ -25,19 +25,19 @@ class UserTest < ActiveSupport::TestCase
   # / i am removing the @user save line 11
   # /  before_save { self.email = email.downcase!}
 
-  test "_validate the presence of the ATTRIBUTE user_name per @user.valid? _ " do
+  test "_validate the presence of the ATTRIBUTE user_name per @user.valid?_" do
     @user.user_name = "     "
     assert_not @user.valid?
   end
 
-  test "validate the presence of the User ATTRIBUTE of email " do
+  test "_validate the presence of the User ATTRIBUTE of email_" do
     @user.email = "   "
     assert_not @user.valid?
   end
 
 #  / constraints are set in  app/models/user.rb !! //
 #  / creates a user name of 49 chars in length  /
-  test "_ Limit to user_name attribute to be 48 char max ! " do
+  test "_Limit to user_name attribute to be 48 char max !_" do
     @user.user_name = "x" * 49
     assert_not @user.valid?
   end
@@ -70,19 +70,24 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
-  # $$$$$$$$$$$$$  DUPLICATE USER   $$$$$$$$$$$$$$$$$$$ #
-  puts "   ^^^^^^^^         LINE 73          ^^^^^^^^^^^^^   "
+    # $$$$$$$$$$$$$  DUPLICATE USER   $$$$$$$$$$$$$$$$$$$ #
+
   test "Test that email addresses should be unique, no duplicate addresses" do
+    puts " "
+    puts "$$> test/models/user_test.rb  :  Test email addresses should be unique i.e. no duplicate addresses"
+    puts " "
     duplicate_user = @user.dup
     duplicate_user.email = @user.email.upcase
     @user.save
     puts  " The created duplicate user is >>> #{duplicate_user.inspect}"
-    puts "  - - - - - - - - - Line 79 - - - - - - - - -  "
+    puts "  - - - - - - - - - Line 83 - - - - - - - - -  "
     puts " The original user's info is  >>> #{@user.inspect}"
     assert_not duplicate_user.valid?
-    puts " - - - - - - - - - - - - - Line 82  - - - - - - - - - "
+    puts " - - - - - - - - - - - - - Line 86  - - - - - - - - - "
     puts " Is the duplicate user valid, is it UNIQUE?( F for Not Unique )=  #{duplicate_user.valid?}"
-    puts " - - ASSERTED_NOT UNIQUE True at Line 84 - - - - - - - - - "
+    puts " - - ASSERTED_NOT UNIQUE True at Line 88 - - - - - - - - - "
+    puts " "
+    puts "  $$$$$$$       END   DUPLICATE USER   TEST  $$$$$$$"
   end
 
 #  @user.dup uses the dup method which will create a duplicate user #
@@ -92,15 +97,9 @@ class UserTest < ActiveSupport::TestCase
 # upcase.  But the model says downcase before save !.
 
 
-
-
-
-
-
-
-
-# $$$$$$$$$$$$$  DUPLICATE USER   $$$$$$$$$$$$$$$$$$$ #
-
+puts " "
+puts "$$> test/models/user_test.rb  :  Save email addresses in lower-case"
+puts " "
   test "<-- Save email addresses in lower-case --> " do
       mixed_case_email = "HousTon@ExaMPLE.CoM"
       @user.email = mixed_case_email
@@ -118,5 +117,29 @@ test "..pword to be a min length of 4 chars..." do
   assert_not @user.valid?
 end
 
+# following utility methods basic test routine,
+# StandardError: No fixture named 'wally' found for fixture set 'users'
+
+ puts "             User Tests for following utilities functioning "
+ puts "             requires users set up in fixtures/user.yml"
+ puts "             should follow test is found in test/models/user_test.rb"
+ puts " "
+ test "should follow and unfollow a user" do
+   puts " "
+   puts "                         test should follow and unfollow a user"
+   puts " "
+   wally = users(:wally)
+   jamal = users(:jamal)
+   assert_not wally.following? (jamal)
+   wally.follow(jamal)
+   assert wally.following?(jamal)
+   wally.unfollow(jamal)
+   assert_not wally.following?(jamal)
+ end
+
+
+puts "  "
+puts " <<<<<<<<<<<<<<<<<          exiting : test/models/user_test.rb   >>>>>>>>>"
+puts "  "
 
 end

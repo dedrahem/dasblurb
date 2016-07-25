@@ -1,13 +1,20 @@
 require "test_helper"
 
 class UsersSignupTest < ActionDispatch::IntegrationTest
-
-  #def test_sanity
-    #flunk "Need real tests"
-  #end
-puts " BEGIN : class UsersSignupTest < ActionDispatch::IntegrationTest , line 8"
-puts " "
-  test "Test the signup information is INVALID ?" do
+  puts "$>> EXECUTE  :command k / bundle exec rake test "
+  puts " "
+  puts "$>> Starting : test/integration/users_signup_test"
+  puts "             : Read about fixtures at, "
+  puts "               http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html "
+  puts " "
+  puts " "
+  puts " * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *"
+  puts " "
+  puts " BEGIN : class UsersSignupTest < ActionDispatch::IntegrationTest"
+  puts " "
+  puts " * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *"
+  puts " "
+  test "Test for valid signup and valid sign up information" do
     puts " "
     get sign_up_path
     puts " INVALID TEST sign_up at line 13 get sign_up_path "
@@ -39,7 +46,9 @@ puts " "
   test "Is the signup information VALID? " do
     puts " "
     puts " "
-    puts " BEGIN TEST : is the sign_up information VALID?!  at line 42"
+    puts " BEGIN TEST : is the sign_up information VALID?!"
+    puts " "
+    puts " "
     get sign_up_path
     puts " "
     puts "The User.count before VALID block is : #{User.count}"
@@ -60,13 +69,15 @@ puts " "
     assert_template 'sessions/new'
     assert_not_empty flash
     puts " "
-    puts " VALID TEST : assert_template sessions/new at line 60 is:  #{assert_template 'sessions/new'} "
+    puts " VALID TEST : assert_template sessions/new at line 71 is:  #{assert_template 'sessions/new'} "
     puts " "
-    puts " VALID TEST :  assert_not_empty flash at line 61 is:  #{assert_not_empty flash}  : TRUE if EMPTY "
+    puts " VALID TEST :  assert_not_empty flash at line 73 is:  #{assert_not_empty flash}  : TRUE if EMPTY "
     puts " "
-    puts " TEST: IS THE SIGN UP VALID - END   line 67  "
+    puts " TEST: IS THE SIGN UP VALID - END   L75"
     end
+  puts "  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - "
   puts " "
-  puts " END CLASS : class UsersSignupTest < ActionDispatch::IntegrationTest , line 68"
+  puts " END : class UsersSignupTest < ActionDispatch::IntegrationTest "
   puts " "
+  puts "  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - "
 end  # END CLASS

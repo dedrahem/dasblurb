@@ -6,10 +6,31 @@ one:
   user_name: Test User
   email:      test@user.com
   password_digest: 12345
-#  "users"
-#  t.string   "user_name"
-#  t.string   "email"
-#  t.string   "password_digest"
-#  t.datetime "created_at"
-#  t.datetime "updated_at"
-#  t.boolean  "admin"
+
+wally:
+  id: 2
+  created_at: 2016-04-28 21:06:18
+  user_name: Wally User
+  email:      wally@user.com
+  password_digest: 12345
+
+jamal:
+  id: 3
+  created_at: 2016-04-28 21:07:18
+  user_name: Jamal User
+  email:      jamal@user.com
+  password_digest: 12345
+
+hasben:
+  id: 4
+  created_at: 2016-04-28 21:08:18
+  user_name: Hasben Pharten
+  email:      hasben@user.com
+  password_digest: 12345
+
+jasmine:
+  id: 5
+  created_at: 2016-04-28 21:09:18
+  user_name: Jasmine Tea
+  email:      jasmine@user.com
+  password_digest: 12345

@@ -13,7 +13,8 @@ class LoginCanViewSecretTest < Capybara::Rails::TestCase
   #  click_link "Sign Out"
   #  refute_content page, "so many secrets"
   #end
-
+puts "$$> test/features/login_can_view_secret_test.rb  "
+puts "$$> Cannot view the secret when not logged in - so many secrets"
   test "Cannot view the secret when not logged in" do
     me=User.create email: "doug@me.com", password: "mypword"
     visit root_path
@@ -28,5 +29,5 @@ class LoginCanViewSecretTest < Capybara::Rails::TestCase
 #    click_button "Sign In"
 #    assert_content page, "so many secrets"
 #  end
-
+puts "$$> EXIT : test/features/login_can_view_secret_test.rb  "
 end

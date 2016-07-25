@@ -5,20 +5,30 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
 
  before_action do
+  puts " "
+  puts "              CONTROLLER : You are in the Application Controller ! before action do"
+  puts "              prior to assignment of @current_user = User.find_by id: session[:user_id]"
+  puts "              verify @current_user is : #{@current_user.inspect}"
+  puts " "
   @current_user = User.find_by id: session[:user_id]
+  puts " "
+  puts "              AFTER assingment of @current_user = User.find_by id: session[:user_id]"
+  puts "              verify @current_user is : #{@current_user.inspect}"
+  puts " "
  end
 
  def authenticate_user!
    puts "  "
-   puts "$$$ Status: application controller in def authenticate_user! method        *"
-   puts "$$$         IF @CURRENT_USER.BLANK? then redirect_to sign_in_path          *"
-   puts "$$$ Status: application controller, {@current_user.inspect} is :  #{@current_user.inspect}"
+   puts "            Execution is in : Application Controller at def authenticate_user! method"
+   puts "            {@current_user.inspect} is :  #{@current_user.inspect}"
+   puts "            IF @CURRENT_USER.BLANK? then redirect_to sign_in_path"
    puts " "
    if @current_user.blank?
-     puts "  !! application controller : @current_user IS BLANK, will now redirect to sign in path."
-    redirect_to sign_in_path
+     puts "          @current_user.BLANK? is:  #{@current_user.blank?} : will redirect_to sign_in_path"
+     redirect_to sign_in_path
    end
-   puts " END of def authenticate_user! in the application controller"
+   puts "            END of def authenticate_user! in the application controller"
+   puts "            {@current_user.inspect} is :  #{@current_user.inspect}"
    puts " "
  end
 
