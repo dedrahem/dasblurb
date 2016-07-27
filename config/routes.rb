@@ -65,6 +65,6 @@ Rails.application.routes.draw do
   puts "                             "
   puts "routes.rb : loading routes - completed"
   puts " "
-  puts "$$>> #{Time.zone.now} "
+  puts "                                            #{Time.zone.now} "
   puts " "
 end

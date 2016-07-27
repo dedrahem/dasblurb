@@ -1,25 +1,43 @@
 <% provide(:title, @title) %>
 <div class="row">
   <aside class="col-md-4">
+
     <section class="user_info">
       <h1><%= @user.user_name %></h1>
       <span><%= link_to "View My Profile", @user %></span>
       <span><b>Posts:</b> <%= @user.posts.count %></span>
     </section>
+
     <section class="stats">
       <%= render 'shared/stats' %>
       <% if @users.any? %>
         <div class="blank_div"></div>
       <% end %>
     </section>
+
   </aside>
-  <div class="col-md-8">
-    <h3><%= @title %></h3>
-    <% if @users.any? %>
-      <ul class="users follow">
-        <%= render @users %>
+  <!--  STYLE 637 see .users.follow {padding: 0;} 645 show_follow -->
+  <div class="col-md-8">               <!-- div class for follow group title -->
+    <h3><%=@title%></h3>
+    <%= will_paginate %>
+      <ul class="users">
+          <% @users.each do |user| %>
+          <li>
+            <%= link_to highlight(user.user_name, params[:search_text]), "/users/#{user.id}" %>
+          </li>
+        <% end %>
       </ul>
-      <%= will_paginate %>
-    <% end %>
-  </div>
-</div>
+    <%= will_paginate %>
+  </div>                               <!-- CLOSE div class for follow group title -->
+
+</div>  <!-- this closes the div class row at very top -->
+
+
+<!--  if @users.any? % -->
+  <!-- ul class="users follow" -->
+    <!--  @users.each do |user| % -->
+      <!--  =user.user_name%  -->
+    <!-- end% > END do -->
+  <!-- /ul  -->
+  <!-- will_paginate @users% -->
+<!--  end%  ! end if@users any?  -->

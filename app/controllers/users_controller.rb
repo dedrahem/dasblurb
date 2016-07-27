@@ -204,6 +204,12 @@ puts " "
     @title = "Following"
     @user = User.find(params[:id])
     @users = @user.following.paginate(page: params[:page])
+    #     .paginate(page: params[:page])  just take it out
+    puts " "
+    puts " [][][][][][][][][][][][][][][]     BEGIN    [][][][][][][][][][][][][][][][][]"
+    puts "                      list user is following : #{@users.inspect}  "
+    puts " [][][][][][][][][][][][][][][][][]  END  [][][][][][][][][][][][][][][][][][][]"
+    puts " "
     render 'show_follow'
   end
 
@@ -211,6 +217,12 @@ puts " "
     @title = "Followers"
     @user = User.find(params[:id])
     @users = @user.followers.paginate(page: params[:page])
+    #  .paginate(page: params[:page])  again, paginate is an obstinate and cantankerous method
+    puts " "
+    puts " [][][][][][][][][][][][][][][]     BEGIN    [][][][][][][][][][][][][][][][][]"
+    puts "                      list of users followers : #{@users.inspect}  "
+    puts " [][][][][][][][][][][][][][][][][]  END  [][][][][][][][][][][][][][][][][][][]"
+    puts " "
     render 'show_follow'
   end
 
@@ -221,7 +233,7 @@ puts " "
   # end
   # Confirms an Admin User method
     def admin_user
-      puts "user status: if the current user is not admin redirect to root"
+      puts "                        user status: if the current user is not admin redirect to root"
       redirect_to (root_path) unless current_user.admin?
     end
 
